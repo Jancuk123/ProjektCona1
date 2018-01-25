@@ -1,0 +1,108 @@
+﻿body {
+    padding-top: 100px;
+    height: 100vh;
+    /*padding-bottom: 20px;*/
+}
+
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}*/
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* The sidebar menu */
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 0; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #1B3C8B; /* BlueDark */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 40px;
+    transition: 0.5s;
+    border-right: 2px solid #111
+}
+
+    /* The navigation menu links */
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        display: block;
+        transition: 0.5s;
+        color: white;
+    }
+
+        /* When you mouse over the navigation links, change their color */
+        .sidenav a:hover {
+            color: Highlight;
+        }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        font-size: 36px;
+        margin-left: 10px;
+    }
+
+    .sidenav .collapse a {
+        font-size: 18px;
+    }
+
+#main {
+    transition: margin-left .5s;
+    /*padding: 20px;*/
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 20px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+
+        .sidenav .collapse a {
+            font-size: 14px;
+        }
+}
+
+.navbtnstil1 {
+    border: none;
+    background-color: #1B3C8B;
+    color: white;
+    width: 140px;
+    height: 80px;
+    vertical-align: middle;
+    font-size: 22px;
+}
+
+    .navbtnstil1:hover {
+        color: Highlight;
+    }
+
+#conalogo {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+

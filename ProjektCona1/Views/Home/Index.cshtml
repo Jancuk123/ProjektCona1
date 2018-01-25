@@ -1,0 +1,120 @@
+﻿@model IEnumerable<ProjektCona1.Models.Podatki>
+
+@{
+    ViewBag.Title = "Start";
+}
+
+<div class="row container-fluid">
+    <div class="col-lg-7" style="padding-top:20px">
+        <div id="map" style="width:100%;height:450px;border:2px solid black;border-radius:2px;"></div>
+    </div>
+    <div id="zadnjipodatki" class="col-lg-5">
+        <h2>Zadnji podatki</h2>
+        <table class="table table-hover table-condensed" style="width:100%;background-color:rgba(255, 255, 255, 0.60);border:2px solid black;border-radius:2px">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdPostaje)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cas)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Temp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Vlaga)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdPostaje)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cas)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Temp)°C
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Vlaga)%
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+<div class="container-fluid" style="padding-top:10px;">
+    <div class="row text-center" style="color:black;">
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <a href="http://www.meteo.si/met/sl/app/webmet/#webmet=vUHcs9WYkN3LtVGdl92LhBHcvcXZi1WZ09Cc1p2cvAncvd2LyVWYs12L3VWY0hWZy9SaulGdugXbsx3cs9mdl5Wah91c3xHf;">
+                    <img src="~/Slike/arso.png" alt="ARSO" title="ARSO" />
+                </a>
+                Vremenska napoved - SLO
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <a href="http://www.meteo.fvg.it/home.php">
+                    <img src="~/Slike/arpa.png" alt="ARPA" title="ARPA" />
+                </a>
+                Vremenska napoved - Italija
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <a href="https://www.meteoalarm.eu/sl_SI/0/0/SI-Slovenija.html">
+                    <img src="~/Slike/alarm.png" alt="Meteoalarm" title="Meteoalarm" />
+                </a>
+                Meteoalarm - Slovenija
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function myMap() {
+        var mapCanvas = document.getElementById("map");
+        var mapOptions = {
+            center: new google.maps.LatLng(45.952766, 13.650980), zoom: 14,
+            panControl: false,
+            zoomControl: false,
+            mapTypeControl: true,
+            scaleControl: false,
+            streetViewControl: false,
+            overviewMapControl: false,
+            rotateControl: false,
+            gestureHandling: 'cooperative'
+        };
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+
+        var marker1 = new google.maps.Marker({
+            position: new google.maps.LatLng(45.952720, 13.668899),
+
+        });
+        var marker2 = new google.maps.Marker({
+            position: new google.maps.LatLng(45.949988, 13.650484),
+
+        });
+        var marker3 = new google.maps.Marker({
+            position: new google.maps.LatLng(45.953065, 13.636372),
+
+        });
+
+        marker1.setMap(map);
+        marker2.setMap(map);
+        marker3.setMap(map);
+
+        marker1.addListener('click', function () { location.href = "/Podatki/Index/1"; });
+        marker2.addListener('click', function () { location.href = "/Podatki/Index/2"; });
+        marker3.addListener('click', function () { location.href = "/Podatki/Index/3"; });
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYVCxh0G-I-FtUD6b1hMUWiQ6pY4XSpdk&callback=myMap"></script>
