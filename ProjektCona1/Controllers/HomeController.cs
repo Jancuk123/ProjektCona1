@@ -19,7 +19,7 @@ namespace ProjektCona1.Controllers
             return View(data);
         }
 
-        public ActionResult Indexen()
+        public ActionResult Indexeng()
         {
             var data = from element in db1.Podatkis
                        group element by element.IdPostaje
@@ -28,7 +28,7 @@ namespace ProjektCona1.Controllers
             return View(data);
         }
 
-        public ActionResult Indexit()
+        public ActionResult Indexita()
         {
             var data = from element in db1.Podatkis
                        group element by element.IdPostaje

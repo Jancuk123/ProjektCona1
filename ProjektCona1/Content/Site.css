@@ -32,11 +32,12 @@ textarea {
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #1B3C8B; /* BlueDark */
+    background-color: rgba(27, 60, 139, 0.95); /* BlueDark */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 40px;
     transition: 0.5s;
-    border-right: 2px solid #111
+    border-right: 2px solid #111;
+    margin-top: 80px;
 }
 
     /* The navigation menu links */
@@ -56,7 +57,7 @@ textarea {
 
     .sidenav .closebtn {
         position: absolute;
-        top: 0;
+        top: 5px;
         right: 5px;
         font-size: 36px;
         margin-left: 10px;
@@ -105,4 +106,20 @@ textarea {
     margin-bottom: 10px;
 }
 
+@media (max-width: 767px) {
 
+    .sidenav {
+        margin-top: 40px;
+    }
+        #conalogo {
+        margin-top:2px;
+        margin-bottom:2px;
+        height:50px;
+    }
+    .navbtnstil1 {
+        height:40px;
+    }
+    .navbar {
+        min-height:40px;
+    }
+}
