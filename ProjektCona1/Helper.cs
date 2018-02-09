@@ -25,6 +25,7 @@ namespace ProjektCona1
                 XmlSerializer ser = new XmlSerializer(typeof(data));
                 Stream rawXml = x;
                 var p = ser.Deserialize(rawXml) as data;
+                
                 return p;
             }
             else

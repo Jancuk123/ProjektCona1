@@ -13,7 +13,7 @@ namespace ProjektCona1.Controllers
         public ActionResult Index()
         {
             data podatki = Helper.Beri();
-
+            
             return View(podatki);
         }
     }
