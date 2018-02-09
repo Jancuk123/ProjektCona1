@@ -1405,8 +1405,8 @@ body {
     font-size: 14px;
     line-height: 1.42857143;
     color: black;
-    background-color: white;
-    background-image: url(../Slike/pattern1.jpg);
+    background-color: lightgray;
+    /*background-image: url(../Slike/pattern1.jpg);*/
 }
 
 input,
@@ -5650,7 +5650,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 .navbar-inverse {
     background-color: #1B3C8B;
-    border-color: #111;
+    border: 1px solid #1B3C8B;
 }
 
     .navbar-inverse .navbar-brand {

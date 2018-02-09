@@ -36,7 +36,7 @@ textarea {
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 40px;
     transition: 0.5s;
-    border-right: 2px solid #111;
+    border-right: none;
     margin-top: 80px;
 }
 
