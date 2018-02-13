@@ -4,12 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Projekt Cona</title>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/Chart.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body style="height:100%;">
     <div id="zgoraj" class="navbar navbar-inverse navbar-fixed-top" style="transition:0.5s;">
-        <div id="navcont" class="container" style="padding-left:15px;padding-right:15px;vertical-align:central;">
+        <div id="navcont" class="container-fluid" style="padding-left:15px;padding-right:15px;vertical-align:central;">
             <div id="glava" class="navbar-header" style="display:inline-block">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="position:fixed;right:5px;vertical-align:central;">
                     <span class="icon-bar"></span>

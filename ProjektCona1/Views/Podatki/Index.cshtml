@@ -7,6 +7,10 @@
 <div class="container">
     <h2 id="podatki">Vsi podatki</h2>
 
+    <div class="chart-container" style="border:2px solid #808080;border-radius:4px;background-color:#ededed;margin-left:5%;position:relative;width:90%;height:40%">
+        <canvas id="bar-chart"></canvas>
+    </div>
+
     <p>
         @Html.ActionLink("Dodaj podatek", "Create")
     </p>
@@ -33,7 +37,7 @@
             </th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.Reverse())
         {
             <tr>
                 <td>
@@ -59,3 +63,114 @@
 
     </table>
 </div>
+
+<script>
+    var podatki = @Html.Raw(Json.Encode(Model));
+
+    var temp = podatki.map(function (item) {
+        return item.Temp
+    });
+    var datumi = podatki.map(function (item) {
+        var x = item.Cas.toString();
+        var konc = x.substr(6, 13);
+        var date = new Date(parseInt(konc));
+        var options = { year: 'numeric', month: 'numeric', day: 'numeric' }
+        var dateString = date.toLocaleString('de-DE', options);
+        return dateString;
+    });
+
+    var vlage = podatki.map(function (item) {
+        return item.Vlaga;
+    });
+    new Chart(document.getElementById("bar-chart"), {
+        type: 'bar',
+        data: {
+            labels:  datumi,
+            datasets: [
+            {
+                type: 'line',
+                label: "Temperatura",
+                backgroundColor: '#98C222',
+                borderColor: '#98C222',
+                borderWidth: 2,
+                data: temp,
+                fill: false,
+                yAxisID: 'yaxis2',
+                cubicInterpolationMode: 'monotone'
+            },
+                {
+                    type: 'bar',
+                    label: "Vlaga",
+                    borderColor: '#162157',
+                    backgroundColor: "#243F8C",
+                    borderWidth: 2,
+                    data: vlage,
+                    yAxisID: 'yaxis1'
+                }
+
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    barPercentage: 0.9,
+                    categoryPercentage: 1
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Vlaga',
+                        fontSize: 14
+                    },
+                    barPercentage: 0.9,
+                    categoryPercentage: 1,
+                    type: 'linear',
+                    id: 'yaxis1',
+                    display: true,
+                    position: 'left',
+                    ticks: {
+                        max: 100,
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            return value + '%';
+                        }
+                    },
+                },
+                    {
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Temperatura',
+                            fontSize: 14
+                        },
+                        type: 'linear',
+                        id: 'yaxis2',
+                        display: true,
+                        position: 'right',
+                        ticks: {
+                            max: 50,
+                            beginAtZero: true,
+                            callback: function (value, index, values) {
+                                return value + '°C';
+                            }
+                        },
+                        gridLines: {
+                            drawOnChartArea: false,
+                        }
+                    }]
+            },
+            legend: { display: true },
+            tooltips: {
+                mode: 'index',
+                intersect: false
+            },
+            title: {
+                display: true,
+                text: 'Vlaga in Temperatura',
+                fontSize: 16
+            }
+        }
+    });
+</script>
