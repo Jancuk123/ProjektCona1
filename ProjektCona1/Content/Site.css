@@ -106,20 +106,29 @@ textarea {
     margin-bottom: 10px;
 }
 
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+}
+
 @media (max-width: 767px) {
 
     .sidenav {
         margin-top: 40px;
     }
-        #conalogo {
-        margin-top:2px;
-        margin-bottom:2px;
-        height:50px;
+
+    #conalogo {
+        margin-top: 2px;
+        margin-bottom: 2px;
+        height: 50px;
     }
+
     .navbtnstil1 {
-        height:40px;
+        height: 40px;
     }
+
     .navbar {
-        min-height:40px;
+        min-height: 40px;
     }
 }

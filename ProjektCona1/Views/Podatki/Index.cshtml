@@ -7,15 +7,15 @@
 <div class="container">
     <h2 id="podatki">Vsi podatki</h2>
 
-    <div class="chart-container" style="border:2px solid #808080;border-radius:4px;background-color:#ededed;margin-left:5%;position:relative;width:90%;height:40%">
+    <div class="chart-container" style="border:2px solid black;border-radius:4px;background-color:rgba(255, 255, 255, 0.60);position:relative;width:100%;height:40%;min-width:300px;">
         <canvas id="bar-chart"></canvas>
     </div>
 
-    <p>
+    <p style="margin-top:10px;">
         @Html.ActionLink("Dodaj podatek", "Create")
     </p>
 
-    <table class="table table-hover" style="background-color:rgba(255, 255, 255, 0.60);border:2px solid black;border-radius:2px">
+    <table class="table table-hover" style="background-color:rgba(255, 255, 255, 0.60);border:2px solid black;border-radius:4px">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.IdPostaje)
@@ -82,10 +82,15 @@
     var vlage = podatki.map(function (item) {
         return item.Vlaga;
     });
+
+    var postaje = podatki.map(function (item) {
+        return item.Id;
+    });
+    
     new Chart(document.getElementById("bar-chart"), {
         type: 'bar',
         data: {
-            labels:  datumi,
+            labels:  postaje,
             datasets: [
             {
                 type: 'line',
@@ -115,7 +120,12 @@
             scales: {
                 xAxes: [{
                     barPercentage: 0.9,
-                    categoryPercentage: 1
+                    categoryPercentage: 1,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Postaje',
+                        fontSize: 14
+                    },
                 }],
                 yAxes: [{
                     display: true,
@@ -168,7 +178,7 @@
             },
             title: {
                 display: true,
-                text: 'Vlaga in Temperatura',
+                text: 'Vlaga in Temperatura po postajah',
                 fontSize: 16
             }
         }
