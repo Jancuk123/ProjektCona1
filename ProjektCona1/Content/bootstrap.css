@@ -5133,7 +5133,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 767px) {
     .navbar-header {
         float: left;
     }
@@ -5342,7 +5342,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
             .navbar-nav .open .dropdown-menu > li > a:focus {
                 background-image: none;
             }
-. navbar-nav {
+.navbar-nav {
     text-align:center;
 }
     .navbar-nav > li {

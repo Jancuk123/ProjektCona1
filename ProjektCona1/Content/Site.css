@@ -26,8 +26,9 @@ textarea {
 
 /* The sidebar menu */
 .sidenav {
+    display: none;
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 0; /* Set the width of the sidebar */
+    width: 190px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
@@ -67,26 +68,6 @@ textarea {
         font-size: 18px;
     }
 
-#main {
-    transition: margin-left .5s;
-    /*padding: 20px;*/
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 20px;
-    }
-
-        .sidenav a {
-            font-size: 18px;
-        }
-
-        .sidenav .collapse a {
-            font-size: 14px;
-        }
-}
-
 .navbtnstil1 {
     border: none;
     background-color: #1B3C8B;
@@ -101,10 +82,59 @@ textarea {
         color: Highlight;
     }
 
+
 #conalogo {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+#main {
+    transition: margin-left .5s;
+    /*padding: 20px;*/
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 20px;
+        margin-top: 40px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+
+        .sidenav .collapse a {
+            font-size: 14px;
+        }
+
+    #conalogo {
+        margin-top: 2px;
+        margin-bottom: 2px;
+        height: 50px;
+    }
+
+    .navbtnstil1 {
+        height: 40px;
+    }
+
+    #zgoraj {
+        min-height: 40px;
+    }
+
+    .navbar-nav > li > a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        line-height: 30px;
+    }
+
+    .navbar-header {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+   
+}
+
 
 @media (max-width: 768px) {
     body {
@@ -112,7 +142,7 @@ textarea {
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 
     .sidenav {
         margin-top: 40px;
@@ -128,7 +158,7 @@ textarea {
         height: 40px;
     }
 
-    .navbar {
+    #zgoraj {
         min-height: 40px;
     }
 }
