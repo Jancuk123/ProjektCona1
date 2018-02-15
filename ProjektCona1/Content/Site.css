@@ -72,10 +72,9 @@ textarea {
     border: none;
     background-color: #1B3C8B;
     color: white;
-    width: 140px;
     height: 80px;
     vertical-align: middle;
-    font-size: 22px;
+    font-size: 20px;
 }
 
     .navbtnstil1:hover {
@@ -160,5 +159,11 @@ textarea {
 
     #zgoraj {
         min-height: 40px;
+    }
+}
+
+@media (max-width: 350px) {
+    .izgine {
+        display:none;
     }
 }
