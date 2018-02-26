@@ -3,14 +3,28 @@
 @{
     ViewBag.Title = "Start";
 }
-
-<div class=" container" style="padding-top:20px">
-        <div id="map" style="width:100%;height:470px;border:2px solid black;border-radius:4px;"></div>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-sm-9" style="padding-top:20px;">
+                <div id="map" style="width:100%;height:470px;border:2px solid black;border-radius:4px;"></div>
+        </div>
+        <div class="col-sm-3" style="padding-top:20px;">
+            <div class="thumbnail">
+                <a href="http://www.meteo.si/met/sl/app/webmet/#webmet=vUHcs9WYkN3LtVGdl92LhBHcvcXZi1WZ09Cc1p2cvAncvd2LyVWYs12L3VWY0hWZy9SaulGdugXbsx3cs9mdl5Wah91c3xHf;">
+                    <img src="~/Slike/arso.png" alt="ARSO" title="ARSO" style="max-height:200px;" />
+                </a>
+                <p><b>Zadnji podatek: </b></p>
+                <p style="color:forestgreen;">@ViewData["datum"]</p>
+                <p style="color:red;">Temperatura: @ViewData["temp"]°C</p>
+                <p style="color:dodgerblue;">Vlaga: @ViewData["vlaga"]%</p>
+                <p>Smer vetra: <b>@ViewData["smer"]</b></p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container text-center" style="padding-top:20px">
     <div class="row">
-
         <div class="col-sm-2">
             <div class="thumbnail">
                 <p><b>Postaja1</b></p>
@@ -125,14 +139,15 @@
     </div>
 </div>
 
-<div class="container" style="padding-top:10px;">
+@*<div class="container" style="padding-top:10px;">
     <div class="row text-center" style="color:black;">
         <div class="col-md-4">
             <div class="thumbnail">
                 <a href="http://www.meteo.si/met/sl/app/webmet/#webmet=vUHcs9WYkN3LtVGdl92LhBHcvcXZi1WZ09Cc1p2cvAncvd2LyVWYs12L3VWY0hWZy9SaulGdugXbsx3cs9mdl5Wah91c3xHf;">
-                    <img src="~/Slike/arso.png" alt="ARSO" title="ARSO" />
+                    <img src="~/Slike/arso.png" alt="ARSO" title="ARSO"/>
                 </a>
                 Vremenska napoved - SLO
+                <p style="background-color:whitesmoke;border: 1px solid black;border-radius:4px;padding:3px;"><b>Zadnji podatek: </b><span style="color:forestgreen;">@ViewData["datum"]</span> ~ <span style="color:red;">@ViewData["temp"]°C</span> ~ <span style="color:dodgerblue;">@ViewData["vlaga"]%</span> ~ Smer vetra: @ViewData["smer"]</p>
             </div>
         </div>
         <div class="col-md-4">
@@ -152,7 +167,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 <script>
     function myMap() {
