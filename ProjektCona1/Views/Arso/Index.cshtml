@@ -72,39 +72,40 @@
 </style>
 
 <div class="container">
-    <h1>ARSO <span class="badge @Model.metData.ElementAt(0).dd_icon" style="border:1px solid black;color:black">Smer vetra: @Html.DisplayFor(modelItem => Model.metData.FirstOrDefault().dd_icon)</span></h1>
+    <h1>ARSO <span class="badge @Model.metData.ElementAt(0).dd_icon" style="border:1px solid black;color:black">Trenutna smer vetra: @Html.DisplayFor(modelItem => Model.metData.FirstOrDefault().dd_icon)</span></h1>
+    <p style="background-color:whitesmoke;border: 1px solid black;border-radius:4px;padding:3px;"><b>Zadnji podatek: </b><span style="color:forestgreen;">@ViewData["datum"]</span> ~ <span style="color:red;">@Html.DisplayFor(modelItem => Model.metData.FirstOrDefault().tavg)°C</span> ~ <span style="color:dodgerblue;">@Html.DisplayFor(modelItem => Model.metData.FirstOrDefault().rhavg)%</span></p>
     <table class="table table-hover" style="background-color:rgba(255, 255, 255, 0.55);border:2px solid black;border-radius:2px">
+    <tr>
+        <th>
+            Čas
+        </th>
+        <th>
+            Smer vetra
+        </th>
+        <th>
+            Temperatura
+        </th>
+        <th>
+            Vlaga
+        </th>
+    </tr>
+    @foreach (var d in Model.metData)
+    {
+        @*<tr class="@d.dd_icon">*@
         <tr>
-            <th>
-                Čas
-            </th>
-            <th>
-                Smer vetra
-            </th>
-            <th>
-                Temperatura
-            </th>
-            <th>
-                Vlaga
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => d.valid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => d.dd_icon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => d.tavg)°C
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => d.rhavg)%
+            </td>
         </tr>
-        @foreach (var d in Model.metData)
-        {
-            @*<tr class="@d.dd_icon">*@
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => d.valid)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => d.dd_icon)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => d.tavg)°C
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => d.rhavg)%
-                </td>
-            </tr>
-        }
-    </table>
+    }
+</table>
 </div>

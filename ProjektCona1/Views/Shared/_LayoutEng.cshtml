@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Projekt Cona</title>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/Chart.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -19,7 +21,7 @@
                 <a href="/Home/Indexeng" style="padding:5px;" class="text-center">
                     <img src="~/Slike/cona1.jpg" class="img-rounded" height="80" alt="Project Cona" title="Project Cona" id="conalogo" />
                 </a>
-                <button type="button" id="navbtnstil1" class="navbar-btn text-center navbtnstil1" onclick="openNav()">Navigation</button>
+                <button type="button" id="navbtnstil1" class="navbar-btn text-center navbtnstil1" onclick="openNav()"><span class="glyphicon glyphicon-th-list"></span><span class="izgine">&nbsp;Navigation</span></button>
             </div>
             <div class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
@@ -69,7 +71,7 @@
     <script>
 
         function openNav() {
-            document.getElementById("stranska").style.width = "190px";
+            document.getElementById("stranska").style.display = "block";
             document.getElementById("navbtnstil1").style.display = "none";
             //document.getElementById("main").style.marginLeft = "190px";
             //document.getElementById("zgoraj").style.marginLeft = "190px";
@@ -77,9 +79,9 @@
 
 
         function closeNav() {
-            document.getElementById("stranska").style.width = "0";
+            document.getElementById("stranska").style.display = "none";
             //document.getElementById("main").style.marginLeft = "0";
-            document.getElementById("navbtnstil1").style.display = "initial";
+            document.getElementById("navbtnstil1").style.display = "inline-block";
             //document.getElementById("zgoraj").style.marginLeft = "initial";
         }
     </script>
