@@ -26,27 +26,26 @@ textarea {
 
 /* The sidebar menu */
 .sidenav {
-    display: none;
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 190px; /* Set the width of the sidebar */
+    width: 200px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
     background-color: rgb(27, 60, 139); /* BlueDark */
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 40px;
+    padding-top: 50px;
     margin-top: 80px;
 }
 
     /* The navigation menu links */
     .sidenav a {
-        padding: 6px 8px 6px 16px;
+        padding: 10px 8px 6px 16px;
         text-decoration: none;
-        font-size: 25px;
+        font-size: 20px;
         display: block;
-        transition: 0.5s;
         color: white;
+        
     }
 
         /* When you mouse over the navigation links, change their color */
@@ -54,17 +53,18 @@ textarea {
             color: Highlight;
         }
 
-    .sidenav .closebtn {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        font-size: 36px;
-        margin-left: 10px;
-    }
 
     .sidenav .collapse a {
-        font-size: 18px;
+        font-size: 16px;
     }
+
+.main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 200px;
+}
+
 
 .navbtnstil1 {
     border: none;
@@ -80,6 +80,10 @@ textarea {
     .navbtnstil1:hover {
         color: Highlight;
     }
+    .navbtnstil1:focus {
+        outline:0;
+        color: Highlight;
+    }
 
 
 #conalogo {
@@ -87,6 +91,14 @@ textarea {
     margin-bottom: 10px;
 }
 
+#alogo {
+    color:transparent;
+    outline:0;
+}
+
+#conalogo:hover {
+    box-shadow: 0 0 5px 5px rgba(255,255,255,0.5);
+}
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
@@ -107,11 +119,16 @@ textarea {
             font-size: 14px;
         }
 
+
     #conalogo {
         margin-top: 2px;
         margin-bottom: 2px;
         height: 50px;
     }
+
+        #conalogo:hover {
+            box-shadow: 0 0 2px 2px rgba(255,255,255,0.5);
+        }
 
     .navbtnstil1 {
         height: 35px;
@@ -148,33 +165,49 @@ textarea {
     }
 
     .sidenav {
+        width: 60px;
         margin-top: 40px;
         padding-top: 20px;
         margin-top: 40px;
+        
     }
 
         .sidenav a {
             font-size: 18px;
+            padding:10px 15px 6px 15px;
         }
 
         .sidenav .collapse a {
             font-size: 14px;
         }
 
+      
+
     #conalogo {
         margin-top: 2px;
         margin-bottom: 2px;
         height: 50px;
     }
+        #conalogo:hover {
+            box-shadow: 0 0 2px 2px rgba(255,255,255,0.5);
+        }
 
     .navbtnstil1 {
         height: 35px;
     }
 
+    .izgine {
+        display:none;
+    }
+
     #zgoraj {
         min-height: 40px;
     }
+    .main {
+        margin-left:50px;
+    }
 }
+
 
 @media (max-width: 350px) {
 
@@ -184,4 +217,9 @@ textarea {
         margin-bottom: 8px;
         height: auto;
     }
+}
+
+
+.levo {
+    margin-left: 0;
 }

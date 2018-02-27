@@ -4309,21 +4309,9 @@ tbody.collapse.in {
 }
 
 .collapsing {
-    position: relative;
-    height: 0;
-    overflow: hidden;
     -webkit-transition: none;
     transition: none;
     display: none;
-    /*-webkit-transition-timing-function: ease;
-       -o-transition-timing-function: ease;
-          transition-timing-function: ease;
-  -webkit-transition-duration: .35s;
-       -o-transition-duration: .35s;
-          transition-duration: .35s;
-  -webkit-transition-property: height, visibility;
-       -o-transition-property: height, visibility;
-          transition-property: height, visibility;*/
 }
 
 .caret {
