@@ -5,13 +5,13 @@
 }
 <div class="container text-center">
     <div class="row">
-        <div class="col-sm-9" style="padding-top:20px;">
+        <div class="col-md-9" style="padding-top:20px;">
                 <div id="map" style="width:100%;height:470px;border:2px solid black;border-radius:4px;"></div>
         </div>
-        <div class="col-sm-3" style="padding-top:20px;">
+        <div class="col-md-3" style="padding-top:20px;">
             <div class="thumbnail">
                 <a href="http://www.meteo.si/met/sl/app/webmet/#webmet=vUHcs9WYkN3LtVGdl92LhBHcvcXZi1WZ09Cc1p2cvAncvd2LyVWYs12L3VWY0hWZy9SaulGdugXbsx3cs9mdl5Wah91c3xHf;">
-                    <img src="~/Slike/arso.png" alt="ARSO" title="ARSO" style="max-height:200px;" />
+                    <img id="arsologo" src="~/Slike/arso.png" alt="ARSO" title="ARSO" style="max-height:200px;" />
                 </a>
                 <p><b>Zadnji podatek: </b></p>
                 <p style="color:forestgreen;">@ViewData["datum"]</p>
@@ -25,7 +25,7 @@
 
 <div class="container text-center" style="padding-top:20px">
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja1</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -34,7 +34,7 @@
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(0).Vlaga)%</p>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja2</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -43,7 +43,7 @@
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(1).Vlaga)%</p>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja3</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja4</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -62,7 +62,7 @@
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(3).Vlaga)%</p>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja5</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -71,7 +71,7 @@
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(4).Vlaga)%</p>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja6</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -82,7 +82,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja7</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -91,7 +91,7 @@
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(6).Vlaga)%</p>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja8</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -100,7 +100,7 @@
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(7).Vlaga)%</p>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja9</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -109,7 +109,7 @@
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(8).Vlaga)%</p>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja10</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -118,7 +118,7 @@
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(9).Vlaga)%</p>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja11</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -127,7 +127,7 @@
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(10).Vlaga)%</p>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail">
                 <p><b>Postaja12</b></p>
                 <text style="color:red;font-size:10px;">Temperatura:</text>
@@ -139,41 +139,28 @@
     </div>
 </div>
 
-@*<div class="container" style="padding-top:10px;">
-    <div class="row text-center" style="color:black;">
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <a href="http://www.meteo.si/met/sl/app/webmet/#webmet=vUHcs9WYkN3LtVGdl92LhBHcvcXZi1WZ09Cc1p2cvAncvd2LyVWYs12L3VWY0hWZy9SaulGdugXbsx3cs9mdl5Wah91c3xHf;">
-                    <img src="~/Slike/arso.png" alt="ARSO" title="ARSO"/>
-                </a>
-                Vremenska napoved - SLO
-                <p style="background-color:whitesmoke;border: 1px solid black;border-radius:4px;padding:3px;"><b>Zadnji podatek: </b><span style="color:forestgreen;">@ViewData["datum"]</span> ~ <span style="color:red;">@ViewData["temp"]°C</span> ~ <span style="color:dodgerblue;">@ViewData["vlaga"]%</span> ~ Smer vetra: @ViewData["smer"]</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <a href="http://www.meteo.fvg.it/home.php">
-                    <img src="~/Slike/arpa.png" alt="ARPA" title="ARPA" />
-                </a>
-                Vremenska napoved - Italija
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <a href="https://www.meteoalarm.eu/sl_SI/0/0/SI-Slovenija.html">
-                    <img src="~/Slike/alarm.png" alt="Meteoalarm" title="Meteoalarm" />
-                </a>
-                Meteoalarm - Slovenija
-            </div>
-        </div>
-    </div>
-</div>*@
-
 <script>
+
+    $(document).ready(majhen);
+    $(window).on('resize', majhen);
+
+    function majhen() {
+        if ($(window).width() <= 600) {
+            $('#map').css("height", "250");
+            $('#arsologo').css("height", "100");
+        }
+        else {
+            $('#map').css("height", "470");
+            $('#arsologo').css("height", "auto");
+        };
+    }
+
+
     function myMap() {
         var mapCanvas = document.getElementById("map");
         var mapOptions = {
-            center: new google.maps.LatLng(45.952766, 13.650980), zoom: 14,
+            center: new google.maps.LatLng(45.952766, 13.650980),
+            zoom: 13,
             panControl: false,
             zoomControl: false,
             mapTypeControl: true,
@@ -183,6 +170,7 @@
             rotateControl: false,
             gestureHandling: 'cooperative'
         };
+        
         var map = new google.maps.Map(mapCanvas, mapOptions);
 
         var marker1 = new google.maps.Marker({
@@ -208,7 +196,8 @@
         marker1.addListener('click', function () { location.href = "/Podatki/Index/"; });
         marker2.addListener('click', function () { location.href = "/Podatki/Index/"; });
         marker3.addListener('click', function () { location.href = "/Podatki/Index/"; });
-    }
 
+    }
+    
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYVCxh0G-I-FtUD6b1hMUWiQ6pY4XSpdk&callback=myMap"></script>

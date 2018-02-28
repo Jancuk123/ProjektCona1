@@ -5303,7 +5303,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
         line-height: 70px;
     }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 
     .navbar-nav .open .dropdown-menu {
         position: static;
@@ -5348,7 +5348,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
         }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 767px) {
     .navbar-nav {
         float: left;
         margin: 0;
