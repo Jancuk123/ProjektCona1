@@ -18,6 +18,8 @@ namespace ProjektCona1.Models
         public decimal Temp { get; set; }
         [Display(Name = "Vlaga")]
         public decimal Vlaga { get; set; }
+        [Display(Name = "Padavine")]
+        public decimal Padavine { get; set; }
         [Display(Name = "Podatek1")]
         public string Nekaj { get; set; }
         [Display(Name = "Podatek2")]

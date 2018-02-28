@@ -17,6 +17,9 @@ namespace ProjektCona1.Controllers
         // GET: Podatki
         public ActionResult Index()
         {
+            var data = (from x in db.Podatkis
+                        orderby x.Id descending
+                        select x).Take(100);
             return View(db.Podatkis.ToList());
         }
 

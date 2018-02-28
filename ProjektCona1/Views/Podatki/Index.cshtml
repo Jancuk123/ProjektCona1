@@ -30,6 +30,9 @@
                 @Html.DisplayNameFor(model => model.Vlaga)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Padavine)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Nekaj)
             </th>
             <th>
@@ -39,34 +42,38 @@
 
         @foreach (var item in Model.Reverse())
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdPostaje)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cas)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Temp)°C
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Vlaga)%
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nekaj)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nevem)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPostaje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Temp)°C
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vlaga)%
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Padavine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nekaj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nevem)
+            </td>
+        </tr>
         }
 
     </table>
 </div>
 
 <script>
-    var podatki = @Html.Raw(Json.Encode(Model));
+    var podatkivsi = @Html.Raw(Json.Encode(Model));
 
+    var podatki =
     var temp = podatki.map(function (item) {
         return item.Temp
     });

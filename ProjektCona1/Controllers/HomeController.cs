@@ -46,8 +46,8 @@ namespace ProjektCona1.Controllers
 
             var data = from element in db1.Podatkis
                        group element by element.IdPostaje
-                  into groups
-                       select groups.OrderByDescending(p => p.Cas).FirstOrDefault();
+                       into groups
+                       select groups.OrderByDescending(p => p.Id).FirstOrDefault();
             return View(data);
         }
 
