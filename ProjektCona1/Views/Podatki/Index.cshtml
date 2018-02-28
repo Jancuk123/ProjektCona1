@@ -71,9 +71,8 @@
 </div>
 
 <script>
-    var podatkivsi = @Html.Raw(Json.Encode(Model));
+    var podatki = @Html.Raw(Json.Encode(Model));
 
-    var podatki =
     var temp = podatki.map(function (item) {
         return item.Temp
     });
