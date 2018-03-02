@@ -28,7 +28,7 @@ textarea {
     left: 0;
     background-color: rgba(27, 60, 139,0.9); /* BlueDark */
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 50px;
+    padding-top: 20px;
     margin-top: 80px;
 }
 

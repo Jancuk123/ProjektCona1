@@ -20,6 +20,32 @@ namespace ProjektCona1.Controllers
             var data = (from x in db.Podatkis
                         orderby x.Id descending
                         select x).Take(100);
+
+            var tpovp = from t in data
+                        group t by new
+                        {
+                            t.Cas
+                        } into g
+                        select new
+                        {
+                            PovpTemp = g.Average(p => p.Temp),
+                            g.Key.Cas
+                        };
+
+            var vlpovp = from t in data
+                        group t by new
+                        {
+                            t.Cas
+                        } into g
+                        select new
+                        {
+                            PovpVlg = g.Average(p => p.Vlaga),
+                            g.Key.Cas
+                        };
+
+            ViewData["TempAvg"] = tpovp;
+            ViewData["VlagaAvg"] = vlpovp;
+
             return View(db.Podatkis.ToList());
         }
 

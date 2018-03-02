@@ -71,32 +71,34 @@
 </div>
 
 <script>
-    var podatki = @Html.Raw(Json.Encode(Model));
+    @*var podatki = @Html.Raw(Json.Encode(Model));*@
+    var podatkit = @Html.Raw(Json.Encode(ViewData["TempAvg"]));
+    var podatkiv = @Html.Raw(Json.Encode(ViewData["VlagaAvg"]));
 
-    var temp = podatki.map(function (item) {
-        return item.Temp
+    var temp = podatkit.map(function (item) {
+        return item.PovpTemp
     });
-    var datumi = podatki.map(function (item) {
+    var datumi = podatkit.map(function (item) {
         var x = item.Cas.toString();
         var konc = x.substr(6, 13);
         var date = new Date(parseInt(konc));
-        var options = { year: 'numeric', month: 'numeric', day: 'numeric' }
+        var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }
         var dateString = date.toLocaleString('de-DE', options);
         return dateString;
     });
 
-    var vlage = podatki.map(function (item) {
-        return item.Vlaga;
+    var vlage = podatkiv.map(function (item) {
+        return item.PovpVlg;
     });
 
-    var postaje = podatki.map(function (item) {
-        return item.IdPostaje;
-    });
-    
+    //var postaje = podatki.map(function (item) {
+    //    return item.IdPostaje;
+    //});
+
     new Chart(document.getElementById("bar-chart"), {
         type: 'bar',
         data: {
-            labels:  postaje,
+            labels:  datumi,
             datasets: [
             {
                 type: 'line',
@@ -130,7 +132,7 @@
                     categoryPercentage: 1,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Postaje',
+                        labelString: 'Datum',
                         fontSize: 11
                     },
                 }],
