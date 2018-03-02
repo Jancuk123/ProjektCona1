@@ -19,7 +19,7 @@ namespace ProjektCona1.Controllers
         {
             var data = (from x in db.Podatkis
                         orderby x.Id descending
-                        select x).Take(100);
+                        select x).Take(108);
 
             var tpovp = from t in data
                         group t by new
@@ -46,7 +46,7 @@ namespace ProjektCona1.Controllers
             ViewData["TempAvg"] = tpovp;
             ViewData["VlagaAvg"] = vlpovp;
 
-            return View(db.Podatkis.ToList());
+            return View(data);
         }
 
         // GET: Podatki/Details/5
