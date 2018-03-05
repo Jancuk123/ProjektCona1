@@ -89,7 +89,16 @@ textarea {
     outline:0;
 }
 
-#conalogo:hover {
+.btnmoj {
+    background-color: #1B3C8B;
+    border:0;
+}
+
+    .btnmoj:hover {
+        background-color: #98C222;
+    }
+
+.jezik:hover {
     box-shadow: 0 0 5px 5px rgba(255,255,255,0.5);
 }
 

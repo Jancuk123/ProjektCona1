@@ -14,10 +14,11 @@
                     <img id="arsologo" src="~/Slike/arso.png" alt="ARSO" title="ARSO" style="max-height:200px;" />
                 </a>
                 <p><b>Zadnji podatek: </b></p>
+                <p>NOVA GORICA</p>
                 <p style="color:forestgreen;">@ViewData["datum"]</p>
                 <p style="color:red;">Temperatura: @ViewData["temp"]°C</p>
                 <p style="color:dodgerblue;">Vlaga: @ViewData["vlaga"]%</p>
-                <p>Smer vetra: <b>@ViewData["smer"]</b></p>
+                <p style="color:slategrey">Smer vetra: <b>@ViewData["smer"]</b></p>
             </div>
         </div>
     </div>
@@ -193,9 +194,9 @@
         marker2.setMap(map);
         marker3.setMap(map);
 
-        marker1.addListener('click', function () { location.href = "/Podatki/Index/"; });
-        marker2.addListener('click', function () { location.href = "/Podatki/Index/"; });
-        marker3.addListener('click', function () { location.href = "/Podatki/Index/"; });
+        marker1.addListener('click', function () { location.href = "/Podatki/Postaja/1"; });
+        marker2.addListener('click', function () { location.href = "/Podatki/Postaja/2"; });
+        marker3.addListener('click', function () { location.href = "/Podatki/Postaja/3"; });
 
     }
     

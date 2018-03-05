@@ -252,14 +252,11 @@
     <Content Include="Views\Home\Indexeng.cshtml" />
     <Content Include="Views\Home\Indexita.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Podatki\Create.cshtml" />
-    <Content Include="Views\Podatki\Delete.cshtml" />
-    <Content Include="Views\Podatki\Details.cshtml" />
-    <Content Include="Views\Podatki\Edit.cshtml" />
     <Content Include="Views\Podatki\Index.cshtml" />
     <Content Include="Views\Arso\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutEng.cshtml" />
     <Content Include="Views\Shared\_LayoutIta.cshtml" />
+    <Content Include="Views\Podatki\Postaja.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

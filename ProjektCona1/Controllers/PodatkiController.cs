@@ -49,108 +49,46 @@ namespace ProjektCona1.Controllers
             return View(data);
         }
 
-        // GET: Podatki/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Postaja(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Podatki podatki = db.Podatkis.Find(id);
-            if (podatki == null)
-            {
-                return HttpNotFound();
-            }
-            return View(podatki);
+            int stevilka = id ?? 1;
+            var data = (from x in db.Podatkis
+                        where x.IdPostaje==stevilka
+                        orderby x.Id descending
+                        select x).Take(50);
+
+            var tpovp = from t in data
+                        group t by new
+                        {
+                            t.Cas
+                        } into g
+                        select new
+                        {
+                            PovpTemp = g.Average(p => p.Temp),
+                            g.Key.Cas
+                        };
+
+            var vlpovp = from t in data
+                         group t by new
+                         {
+                             t.Cas
+                         } into g
+                         select new
+                         {
+                             PovpVlg = g.Average(p => p.Vlaga),
+                             g.Key.Cas
+                         };
+
+            var tzagraf = (from x in tpovp
+                           select x).Take(10);
+            var vlzagraf = (from x in vlpovp
+                            select x).Take(10);
+            ViewData["TempAvg"] = tzagraf;
+            ViewData["VlagaAvg"] = vlzagraf;
+            ViewData["id"] = stevilka;
+
+            return View(data);
         }
 
-        // GET: Podatki/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Podatki/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IdPostaje,Cas,Temp,Vlaga,Nekaj,Nevem")] Podatki podatki)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Podatkis.Add(podatki);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(podatki);
-        }
-
-        // GET: Podatki/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Podatki podatki = db.Podatkis.Find(id);
-            if (podatki == null)
-            {
-                return HttpNotFound();
-            }
-            return View(podatki);
-        }
-
-        // POST: Podatki/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IdPostaje,Cas,Temp,Vlaga,Nekaj,Nevem")] Podatki podatki)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(podatki).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(podatki);
-        }
-
-        // GET: Podatki/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Podatki podatki = db.Podatkis.Find(id);
-            if (podatki == null)
-            {
-                return HttpNotFound();
-            }
-            return View(podatki);
-        }
-
-        // POST: Podatki/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Podatki podatki = db.Podatkis.Find(id);
-            db.Podatkis.Remove(podatki);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
