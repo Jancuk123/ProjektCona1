@@ -84,9 +84,18 @@ textarea {
     margin-bottom: 10px;
 }
 
+    #conalogo:hover {
+        box-shadow: 0 0 5px 5px rgba(255,255,255,0.5);
+    }
+
 #alogo {
     color:transparent;
     outline:0;
+}
+
+
+.levo {
+    padding-left: 0;
 }
 
 .btnmoj {
@@ -211,7 +220,12 @@ textarea {
     }
 }
 
+/*#region ARSO */
 
-.levo {
-    padding-left: 0;
-}
+
+
+
+
+
+
+/*#endregion*/

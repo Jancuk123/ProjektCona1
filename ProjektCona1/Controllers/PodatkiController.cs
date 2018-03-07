@@ -52,39 +52,47 @@ namespace ProjektCona1.Controllers
         public ActionResult Postaja(int? id)
         {
             int stevilka = id ?? 1;
+
             var data = (from x in db.Podatkis
-                        where x.IdPostaje==stevilka
+                        where x.IdPostaje == stevilka
                         orderby x.Id descending
-                        select x).Take(50);
+                        select x).Take(100);
 
-            var tpovp = from t in data
-                        group t by new
-                        {
-                            t.Cas
-                        } into g
-                        select new
-                        {
-                            PovpTemp = g.Average(p => p.Temp),
-                            g.Key.Cas
-                        };
+            var dataDan = (from x in db.Podatkis
+                        where x.IdPostaje == stevilka
+                        where x.Cas.Minute == 0
+                        orderby x.Id descending
+                        select new { x.Cas, x.Temp, x.Vlaga, x.Padavine }).Take(25);
+            
+            var dataTeden = (from x in db.Podatkis
+                             where x.IdPostaje == stevilka
+                             orderby x.Id descending
+                             group x by DbFunctions.TruncateTime(x.Cas) into g
+                             select new
+                             {
+                                 datum = g.Key,
+                                 tempMax = g.Max(z => z.Temp),
+                                 tempMin = g.Min(z => z.Temp),
+                                 padSUM = g.Sum(z => z.Padavine),
+                                 vlagaAVG = g.Average(z=>z.Vlaga)
+                             }).Take(7);
 
-            var vlpovp = from t in data
-                         group t by new
-                         {
-                             t.Cas
-                         } into g
-                         select new
-                         {
-                             PovpVlg = g.Average(p => p.Vlaga),
-                             g.Key.Cas
-                         };
+            var dataMesec = (from x in db.Podatkis
+                             where x.IdPostaje == stevilka
+                             orderby x.Id descending
+                             group x by DbFunctions.TruncateTime(x.Cas) into g
+                             select new
+                             {
+                                 datum = g.Key,
+                                 tempMax = g.Max(z => z.Temp),
+                                 tempMin = g.Min(z => z.Temp),
+                                 padSUM = g.Sum(z=>z.Padavine),
+                                 vlagaAVG = g.Average(z => z.Vlaga)
+                             }).Take(30);
 
-            var tzagraf = (from x in tpovp
-                           select x).Take(10);
-            var vlzagraf = (from x in vlpovp
-                            select x).Take(10);
-            ViewData["TempAvg"] = tzagraf;
-            ViewData["VlagaAvg"] = vlzagraf;
+            ViewData["Dan"] = dataDan;
+            ViewData["Teden"] = dataTeden;
+            ViewData["Mesec"] = dataMesec;
             ViewData["id"] = stevilka;
 
             return View(data);

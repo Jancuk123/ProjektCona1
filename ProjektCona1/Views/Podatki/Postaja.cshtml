@@ -2,35 +2,26 @@
 
 
 @{
-    ViewBag.Title = "Postaja "+ViewData["id"];
+    ViewBag.Title = "Postaja " + ViewData["id"];
 }
 <div class="container">
     <h2 id="podatki">Postaja @ViewData["id"]</h2>
-    @*<div class="btn-group">
-        <a href="/Podatki" class="btn btn-primary btnmoj">Vsi podatki</a>
-        <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle btnmoj" data-toggle="dropdown">
-                Postaje <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="/Podatki/Postaja/1">Postaja 1</a></li>
-                <li><a href="/Podatki/Postaja/2">Postaja 2</a></li>
-                <li><a href="/Podatki/Postaja/3">Postaja 3</a></li>
-                <li><a href="/Podatki/Postaja/4">Postaja 4</a></li>
-                <li><a href="/Podatki/Postaja/5">Postaja 5</a></li>
-                <li><a href="/Podatki/Postaja/6">Postaja 6</a></li>
-                <li><a href="/Podatki/Postaja/7">Postaja 7</a></li>
-                <li><a href="/Podatki/Postaja/8">Postaja 8</a></li>
-                <li><a href="/Podatki/Postaja/9">Postaja 9</a></li>
-                <li><a href="/Podatki/Postaja/10">Postaja 10</a></li>
-                <li><a href="/Podatki/Postaja/11">Postaja 11</a></li>
-                <li><a href="/Podatki/Postaja/12">Postaja 12</a></li>
-            </ul>
-        </div>
-    </div>*@
+    <div class="btn-group" id="obdobje">
+        <a href="#" id="danbtn" class="btn btn-primary btnmoj">Dan</a>
+        <a href="#" id="tedenbtn"  class="btn btn-primary btnmoj">Teden</a>
+        <a href="#" id="mesecbtn"  class="btn btn-primary btnmoj">Mesec</a>
+    </div>
 
-    <div class="chart-container" style="border:2px solid black;border-radius:4px;background-color:rgba(255, 255, 255, 0.60);position:relative;width:100%;height:400px;min-width:300px;margin-top:20px;">
-        <canvas id="bar-chart"></canvas>
+    <div id="chart-dan"  style="border:2px solid black;border-radius:4px;background-color:rgba(255, 255, 255, 0.60);position:relative;width:100%;height:400px;min-width:300px;margin-top:20px;">
+        <canvas id="bar-chart-dan"></canvas>
+    </div>
+
+    <div id="chart-teden"  style="border:2px solid black;border-radius:4px;background-color:rgba(255, 255, 255, 0.60);position:relative;width:100%;height:400px;min-width:300px;margin-top:20px;">
+        <canvas id="bar-chart-teden"></canvas>
+    </div>
+
+    <div id="chart-mesec"  style="border:2px solid black;border-radius:4px;background-color:rgba(255, 255, 255, 0.60);position:relative;width:100%;height:400px;min-width:300px;margin-top:20px;">
+        <canvas id="bar-chart-mesec"></canvas>
     </div>
 
     <table class="table table-hover" style="background-color:rgba(255, 255, 255, 0.60);border:2px solid black;border-radius:4px;margin-top:20px;">
@@ -49,7 +40,7 @@
             </th>
         </tr>
 
-        @foreach (var item in Model.Reverse())
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -70,32 +61,32 @@
     </table>
 </div>
 
+@*Dan*@
 <script>
-    @*var podatki = @Html.Raw(Json.Encode(Model));*@
-    var podatkit = @Html.Raw(Json.Encode(ViewData["TempAvg"]));
-    var podatkiv = @Html.Raw(Json.Encode(ViewData["VlagaAvg"]));
 
-    var temp = podatkit.map(function (item) {
-        return item.PovpTemp
+    var podatki = @Html.Raw(Json.Encode(ViewData["Dan"]));
+
+    var temp = podatki.map(function (item) {
+        return item.Temp
     });
-    var datumi = podatkit.map(function (item) {
+    var datumi = podatki.map(function (item) {
         var x = item.Cas.toString();
         var konc = x.substr(6, 13);
         var date = new Date(parseInt(konc));
-        var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }
+        var options = { hour: 'numeric', minute: 'numeric' }
         var dateString = date.toLocaleString('de-DE', options);
         return dateString;
     });
 
-    var vlage = podatkiv.map(function (item) {
-        return item.PovpVlg;
-    });
-
-    //var postaje = podatki.map(function (item) {
-    //    return item.IdPostaje;
+    //var padavine = podatkip.map(function (item) {
+    //    return item.Padavine
     //});
 
-    new Chart(document.getElementById("bar-chart"), {
+    var vlaga = podatki.map(function (item) {
+        return item.Vlaga
+    });
+
+    new Chart(document.getElementById("bar-chart-dan"), {
         type: 'bar',
         data: {
             labels:  datumi,
@@ -119,7 +110,153 @@
                     hoverBackgroundColor: "#2c4ec1",
                     hoverBorderColor: "#243F8C",
                     borderWidth: 2,
-                    data: vlage,
+                    data: vlaga,
+                    yAxisID: 'yaxis1'
+                }
+
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{
+                    barPercentage: 0.9,
+                    categoryPercentage: 1,
+                    ticks: {
+                        callback: function (tick, index, array) {
+                            return (index % 2) ? "" : tick;
+                        },
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Datum',
+                        fontSize: 11
+                    },
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Vlaga',
+                        fontSize: 11
+                    },
+                    barPercentage: 0.9,
+                    categoryPercentage: 1,
+                    type: 'linear',
+                    id: 'yaxis1',
+                    display: true,
+                    position: 'right',
+                    ticks: {
+                        max: 100,
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            return value + '%';
+                        }
+                    },
+                },
+                    {
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Temperatura',
+                            fontSize: 11
+                        },
+                        type: 'linear',
+                        id: 'yaxis2',
+                        display: true,
+                        position: 'left',
+                        ticks: {
+                            max: 50,
+                            beginAtZero: true,
+                            callback: function (value, index, values) {
+                                return value + '°C';
+                            }
+                        },
+                        gridLines: {
+                            drawOnChartArea: false,
+                        }
+                    }]
+            },
+            legend: { display: true },
+            tooltips: {
+                mode: 'index',
+                intersect: false
+            },
+            title: {
+                display: true,
+                text: 'Temperatura in vlaga zadnjih 24ur',
+                fontSize: 16
+            },
+            showXLabels: 10
+        }
+    });
+</script>
+
+@*Teden*@
+<script>
+
+    var podatki = @Html.Raw(Json.Encode(ViewData["Teden"]));
+
+    var tempMax = podatki.map(function (item) {
+        return item.tempMax
+    });
+    var tempMin = podatki.map(function (item) {
+        return item.tempMin
+    });
+    var datumi = podatki.map(function (item) {
+        var x = item.datum.toString();
+        var konc = x.substr(6, 13);
+        var date = new Date(parseInt(konc));
+        var options = { day: 'numeric', month: 'numeric', year: 'numeric' }
+        var dateString = date.toLocaleString('de-DE', options);
+        return dateString;
+    });
+
+    //var padavine = podatkip.map(function (item) {
+    //    return item.Padavine
+    //});
+
+    var vlaga = podatki.map(function (item) {
+        return item.vlagaAVG
+    });
+
+    new Chart(document.getElementById("bar-chart-teden"), {
+        type: 'bar',
+        data: {
+            labels:  datumi,
+            datasets: [
+            {
+                type: 'line',
+                label: "Temperatura MAX",
+                backgroundColor: 'orangered',
+                borderColor: 'orangered',
+                borderWidth: 2,
+                data: tempMax,
+                fill: false,
+                yAxisID: 'yaxis2',
+                cubicInterpolationMode: 'monotone'
+                },
+            {
+                type: 'line',
+                label: "Temperatura MIN",
+                backgroundColor: 'highlight',
+                borderColor: 'highlight',
+                borderWidth: 2,
+                data: tempMin,
+                fill: false,
+                yAxisID: 'yaxis2',
+                cubicInterpolationMode: 'monotone'
+            },
+                {
+                    type: 'bar',
+                    label: "Vlaga",
+                    borderColor: '#162157',
+                    backgroundColor: "#243F8C",
+                    hoverBackgroundColor: "#2c4ec1",
+                    hoverBorderColor: "#243F8C",
+                    borderWidth: 2,
+                    data: vlaga,
                     yAxisID: 'yaxis1'
                 }
 
@@ -150,7 +287,7 @@
                     type: 'linear',
                     id: 'yaxis1',
                     display: true,
-                    position: 'left',
+                    position: 'right',
                     ticks: {
                         max: 100,
                         beginAtZero: true,
@@ -169,7 +306,7 @@
                         type: 'linear',
                         id: 'yaxis2',
                         display: true,
-                        position: 'right',
+                        position: 'left',
                         ticks: {
                             max: 50,
                             beginAtZero: true,
@@ -189,9 +326,151 @@
             },
             title: {
                 display: true,
-                text: 'Vlaga in Temperatura po postajah',
+                text: 'Temperatura in vlaga zadnjih 7 dni',
                 fontSize: 16
-            }
+            },
+            showXLabels: 10
+        }
+    });
+</script>
+
+@*Mesec*@
+<script>
+
+    var podatki = @Html.Raw(Json.Encode(ViewData["Mesec"]));
+
+    var tempMax = podatki.map(function (item) {
+        return item.tempMax
+    });
+    var tempMin = podatki.map(function (item) {
+        return item.tempMin
+    });
+    var datumi = podatki.map(function (item) {
+        var x = item.datum.toString();
+        var konc = x.substr(6, 13);
+        var date = new Date(parseInt(konc));
+        var options = { day: 'numeric', month: 'numeric', year: 'numeric' }
+        var dateString = date.toLocaleString('de-DE', options);
+        return dateString;
+    });
+
+    //var padavine = podatkip.map(function (item) {
+    //    return item.Padavine
+    //});
+
+    var vlaga = podatki.map(function (item) {
+        return item.vlagaAVG
+    });
+
+    new Chart(document.getElementById("bar-chart-mesec"), {
+        type: 'bar',
+        data: {
+            labels:  datumi,
+            datasets: [
+            {
+                type: 'line',
+                label: "Temperatura MAX",
+                backgroundColor: 'orangered',
+                borderColor: 'orangered',
+                borderWidth: 2,
+                data: tempMax,
+                fill: false,
+                yAxisID: 'yaxis2',
+                cubicInterpolationMode: 'monotone'
+                },
+            {
+                type: 'line',
+                label: "Temperatura MIN",
+                backgroundColor: 'highlight',
+                borderColor: 'highlight',
+                borderWidth: 2,
+                data: tempMin,
+                fill: false,
+                yAxisID: 'yaxis2',
+                cubicInterpolationMode: 'monotone'
+            },
+                {
+                    type: 'bar',
+                    label: "Vlaga",
+                    borderColor: '#162157',
+                    backgroundColor: "#243F8C",
+                    hoverBackgroundColor: "#2c4ec1",
+                    hoverBorderColor: "#243F8C",
+                    borderWidth: 2,
+                    data: vlaga,
+                    yAxisID: 'yaxis1'
+                }
+
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{
+                    barPercentage: 0.9,
+                    categoryPercentage: 1,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Datum',
+                        fontSize: 11
+                    },
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Vlaga',
+                        fontSize: 11
+                    },
+                    barPercentage: 0.9,
+                    categoryPercentage: 1,
+                    type: 'linear',
+                    id: 'yaxis1',
+                    display: true,
+                    position: 'right',
+                    ticks: {
+                        max: 100,
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            return value + '%';
+                        }
+                    },
+                },
+                    {
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Temperatura',
+                            fontSize: 11
+                        },
+                        type: 'linear',
+                        id: 'yaxis2',
+                        display: true,
+                        position: 'left',
+                        ticks: {
+                            max: 50,
+                            beginAtZero: true,
+                            callback: function (value, index, values) {
+                                return value + '°C';
+                            }
+                        },
+                        gridLines: {
+                            drawOnChartArea: false,
+                        }
+                    }]
+            },
+            legend: { display: true },
+            tooltips: {
+                mode: 'index',
+                intersect: false
+            },
+            title: {
+                display: true,
+                text: 'Temperatura in vlaga zadnjih 30 dni',
+                fontSize: 16
+            },
+            showXLabels: 10
         }
     });
 </script>
