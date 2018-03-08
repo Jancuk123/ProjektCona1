@@ -98,5 +98,19 @@ namespace ProjektCona1.Controllers
             return View(data);
         }
 
+        public ActionResult PostajaLive (int? id)
+        {
+            int stevilka = id ?? 1;
+
+            var data = (from x in db.Podatkis
+                        where x.IdPostaje == stevilka
+                        orderby x.Id descending
+                        select x).Take(10);
+
+            ViewData["id"] = stevilka;
+
+            return View(data);
+        }
+
     }
 }
