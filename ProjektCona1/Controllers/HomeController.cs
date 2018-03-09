@@ -13,36 +13,62 @@ namespace ProjektCona1.Controllers
         public ActionResult Index()
         {
             data podatki = Helper.Beri();
+
             //16.01.2018 15:30 CET
             //01234567890123456789
             //16.01.2018 9:30 CET
-            var zadnji = (from x in podatki.metData
-                          select new { x.valid, x.tavg, x.dd_icon, x.rhavg }).FirstOrDefault();
-            string zadnjiDatum = zadnji.valid;
-            if (zadnjiDatum.Length == 20)
+            if (podatki != null)
             {
-                int dan = int.Parse(zadnjiDatum.Substring(0, 2));
-                int mesec = int.Parse(zadnjiDatum.Substring(3, 2));
-                int leto = int.Parse(zadnjiDatum.Substring(6, 4));
-                int ura = int.Parse(zadnjiDatum.Substring(11, 2));
-                int minuta = int.Parse(zadnjiDatum.Substring(14, 2));
-                DateTime datum = new DateTime(leto, mesec, dan, ura, minuta, 0);
-                ViewData["datum"] = datum;
+                string zadnjiDatum = podatki.metData.valid;
+                if (zadnjiDatum.Length == 20)
+                {
+                    int dan = int.Parse(zadnjiDatum.Substring(0, 2));
+                    int mesec = int.Parse(zadnjiDatum.Substring(3, 2));
+                    int leto = int.Parse(zadnjiDatum.Substring(6, 4));
+                    int ura = int.Parse(zadnjiDatum.Substring(11, 2));
+                    int minuta = int.Parse(zadnjiDatum.Substring(14, 2));
+                    DateTime datum = new DateTime(leto, mesec, dan, ura, minuta, 0);
+                    ViewData["datum"] = datum;
+                    if (datum.Hour > 20 | datum.Hour < 5)
+                        ViewData["delDan"] = "night";
+                    else
+                        ViewData["deldan"] = "day";
+                }
+                else
+                {
+                    int dan = int.Parse(zadnjiDatum.Substring(0, 2));
+                    int mesec = int.Parse(zadnjiDatum.Substring(3, 2));
+                    int leto = int.Parse(zadnjiDatum.Substring(6, 4));
+                    int ura = int.Parse(zadnjiDatum.Substring(11, 1));
+                    int minuta = int.Parse(zadnjiDatum.Substring(13, 2));
+                    DateTime datum = new DateTime(leto, mesec, dan, ura, minuta, 0);
+                    ViewData["datum"] = datum;
+                    if (datum.Hour > 20 | datum.Hour < 5)
+                        ViewData["delDan"] = "night";
+                    else
+                        ViewData["deldan"] = "day";
+                }
+
+                ViewData["temp"] = podatki.metData.t;
+                ViewData["smer"] = podatki.metData.dd_icon;
+                ViewData["vlaga"] = podatki.metData.rh;
+                ViewData["oblacnost"] = podatki.metData.nn_icon;
+                ViewData["pojavi"] = podatki.metData.wwsyn_icon;
             }
             else
             {
-                int dan = int.Parse(zadnjiDatum.Substring(0, 2));
-                int mesec = int.Parse(zadnjiDatum.Substring(3, 2));
-                int leto = int.Parse(zadnjiDatum.Substring(6, 4));
-                int ura = int.Parse(zadnjiDatum.Substring(11, 1));
-                int minuta = int.Parse(zadnjiDatum.Substring(13, 2));
-                DateTime datum = new DateTime(leto, mesec, dan, ura, minuta, 0);
+                DateTime datum = DateTime.Now;
                 ViewData["datum"] = datum;
+                if (datum.Hour > 20 | datum.Hour < 5)
+                    ViewData["delDan"] = "night";
+                else
+                    ViewData["deldan"] = "day";
+                ViewData["temp"] = "?";
+                ViewData["smer"] = "?";
+                ViewData["vlaga"] = "?";
+                ViewData["oblacnost"] = "";
+                ViewData["pojavi"] = "";
             }
-
-            ViewData["temp"] = zadnji.tavg;
-            ViewData["smer"] = zadnji.dd_icon;
-            ViewData["vlaga"] = zadnji.rhavg;
 
             var data = from element in db1.Podatkis
                        group element by element.IdPostaje

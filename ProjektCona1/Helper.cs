@@ -17,16 +17,18 @@ namespace ProjektCona1
             client.DefaultRequestHeaders.Accept.Add(
                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/xml"));
 
-            HttpResponseMessage response = client.GetAsync(new Uri("http://www.meteo.si/uploads/probase/www/observ/surface/text/sl/recent/observationAms_NOVA-GOR_history.xml")).Result;
+            HttpResponseMessage response = client.GetAsync(new Uri("http://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/sl/observation_NOVA-GOR_latest.xml")).Result;
             if (response.IsSuccessStatusCode)
             {
-
+                try { 
                 var x = response.Content.ReadAsStreamAsync().Result;
                 XmlSerializer ser = new XmlSerializer(typeof(data));
                 Stream rawXml = x;
                 var p = ser.Deserialize(rawXml) as data;
-                
                 return p;
+                }
+                catch { return null; }
+                
             }
             else
             { return null; }

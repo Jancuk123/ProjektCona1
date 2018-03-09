@@ -223,4 +223,97 @@ textarea {
 }
 
     /*#region ARSO */
+
+#oblacnost {
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+#pojavi {
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+/*day, night*/
+/*clear, mostClear, slightCloudy, partCloudy, modCloudy, prevCloudy, overcast, FG*/
+
+/*#region Oblačnost */
+
+.dayclear {
+    background-image: url('../../Slike/clear.png')
+}
+
+.daymostClear {
+    background-image: url('../../Slike/mostlysunny.png')
+}
+
+.dayslightCloudy {
+    background-image: url('../../Slike/mostlysunny.png')
+}
+
+.daypartCloudy {
+    background-image: url('../../Slike/partlycloudy.png')
+}
+
+.daymodCloud {
+    background-image: url('../../Slike/partlysunny.png')
+}
+
+.dayprevCloudy {
+    background-image: url('../../Slike/cloudy.png')
+}
+
+.dayovercast {
+    background-image: url('../../Slike/cloudy.png')
+}
+
+.dayFG {
+    background-image: url('../../Slike/fog.png')
+}
+
+.nightclear {
+    background-image: url('../../Slike/clearnight.png')
+}
+
+.nightmostClear {
+    background-image: url('../../Slike/clearnight.png')
+}
+
+.nightslightCloudy {
+    background-image: url('../../Slike/partlycloudynight.png')
+}
+
+.nightpartCloudy {
+    background-image: url('../../Slike/partlycloundynight.png')
+}
+
+.nightmodCloud {
+    background-image: url('../../Slike/cloudynight.png')
+}
+
+.nightprevCloudy {
+    background-image: url('../../Slike/cloudynight.png')
+}
+
+.nightovercast {
+    background-image: url('../../Slike/cloudy.png')
+}
+
+.nightFG {
+    background-image: url('../../Slike/fog.png')
+}
+
+/*#endregion */
+
+/*FG lightFG modFG heavyFG DZ lightDZ modDZ heavyDZ FZDZ lightFZDZ modFZDZ heavyFZDZ RA lightRA modRA heavyRA FZRA lightFZRA modFZRA heavyFZRA 
+    RASN lightRASN modRASN heavyRASN SN lightSN modSN heavySN SHRA lightSHRA modSHRA heavySHRA SHRASN lightSHRASN modSHRASN heavySHRASN 
+    SHSN lightSHSN modSHSN heavySHSN SHGR lightSHGR modSHGR heavySHGR TS lightTS modTS heavyTS TSRA lightTSRA modTSRA heavyTSRA 
+    TSRASN lightTSRASN modTSRASN heavyTSRASN TSSN lightTSSN modTSSN heavyTSSN TSGR lightTSGR modTSGR heavyTSGR*/
+
     /*#endregion*/

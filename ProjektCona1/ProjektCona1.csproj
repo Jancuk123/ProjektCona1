@@ -196,7 +196,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ArsoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PodatkiController.cs" />
     <Compile Include="Global.asax.cs">
@@ -291,7 +290,6 @@
     <Content Include="Views\Home\Indexita.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Podatki\Index.cshtml" />
-    <Content Include="Views\Arso\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutEng.cshtml" />
     <Content Include="Views\Shared\_LayoutIta.cshtml" />
     <Content Include="Views\Podatki\Postaja.cshtml" />

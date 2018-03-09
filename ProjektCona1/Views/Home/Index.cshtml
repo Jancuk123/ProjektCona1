@@ -9,14 +9,11 @@
                 <div id="map" style="width:100%;height:470px;border:2px solid black;border-radius:4px;"></div>
         </div>
         <div class="col-md-3" style="padding-top:20px;">
-            <div class="thumbnail">
-                <a href="http://www.meteo.si/met/sl/weather/observ/surface/">
-                    <img id="arsologo" src="~/Slike/arso.png" alt="ARSO" title="ARSO" style="max-height:200px;" />
-                </a>
-                <div class="center-block" style="height:60px;width:120px;background-color:darkseagreen;position:relative;">
-                    <div style="height:25px;width:25px;background-color:mediumvioletred;position:absolute;right:10px;bottom:10px;"></div>
+          
+        <div class="thumbnail">
+                <div id="oblacnost" class="center-block @ViewData["delDan"]@ViewData["oblacnost"]">
+                    <div id="pojavi" class="@ViewData["pojavi"]"></div>
                 </div>
-                <p><b>Zadnji podatek: </b></p>
                 <p>NOVA GORICA</p>
                 <p style="color:forestgreen;">@ViewData["datum"]</p>
                 <p style="color:red;">Temperatura: @ViewData["temp"]°C</p>
@@ -67,6 +64,7 @@
                 <p style="color:red">@Html.DisplayFor(modelItem => Model.ElementAt(3).Temp)°C</p>
                 <text style="color:blue;font-size:10px;">Vlaga:</text>
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(3).Vlaga)%</p>
+                <a href="/Podatki/PostajaLive/4" style="color:orangered;font-size:12px;"><u>LIVE</u></a>
             </div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
@@ -76,6 +74,7 @@
                 <p style="color:red">@Html.DisplayFor(modelItem => Model.ElementAt(4).Temp)°C</p>
                 <text style="color:blue;font-size:10px;">Vlaga:</text>
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(4).Vlaga)%</p>
+                <a href="/Podatki/PostajaLive/5" style="color:orangered;font-size:12px;"><u>LIVE</u></a>
             </div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
@@ -85,6 +84,7 @@
                 <p style="color:red">@Html.DisplayFor(modelItem => Model.ElementAt(5).Temp)°C</p>
                 <text style="color:blue;font-size:10px;">Vlaga:</text>
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(5).Vlaga)%</p>
+                <a href="/Podatki/PostajaLive/6" style="color:orangered;font-size:12px;"><u>LIVE</u></a>
             </div>
         </div>
     </div>
@@ -96,6 +96,7 @@
                 <p style="color:red">@Html.DisplayFor(modelItem => Model.ElementAt(6).Temp)°C</p>
                 <text style="color:blue;font-size:10px;">Vlaga:</text>
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(6).Vlaga)%</p>
+                <a href="/Podatki/PostajaLive/7" style="color:orangered;font-size:12px;"><u>LIVE</u></a>
             </div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
@@ -105,6 +106,7 @@
                 <p style="color:red">@Html.DisplayFor(modelItem => Model.ElementAt(7).Temp)°C</p>
                 <text style="color:blue;font-size:10px;">Vlaga:</text>
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(7).Vlaga)%</p>
+                <a href="/Podatki/PostajaLive/8" style="color:orangered;font-size:12px;"><u>LIVE</u></a>
             </div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
@@ -114,6 +116,7 @@
                 <p style="color:red">@Html.DisplayFor(modelItem => Model.ElementAt(8).Temp)°C</p>
                 <text style="color:blue;font-size:10px;">Vlaga:</text>
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(8).Vlaga)%</p>
+                <a href="/Podatki/PostajaLive/9" style="color:orangered;font-size:12px;"><u>LIVE</u></a>
             </div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
@@ -123,6 +126,7 @@
                 <p style="color:red">@Html.DisplayFor(modelItem => Model.ElementAt(9).Temp)°C</p>
                 <text style="color:blue;font-size:10px;">Vlaga:</text>
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(9).Vlaga)%</p>
+                <a href="/Podatki/PostajaLive/10" style="color:orangered;font-size:12px;"><u>LIVE</u></a>
             </div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
@@ -132,6 +136,7 @@
                 <p style="color:red">@Html.DisplayFor(modelItem => Model.ElementAt(10).Temp)°C</p>
                 <text style="color:blue;font-size:10px;">Vlaga:</text>
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(10).Vlaga)%</p>
+                <a href="/Podatki/PostajaLive/11" style="color:orangered;font-size:12px;"><u>LIVE</u></a>
             </div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
@@ -141,6 +146,7 @@
                 <p style="color:red">@Html.DisplayFor(modelItem => Model.ElementAt(11).Temp)°C</p>
                 <text style="color:blue;font-size:10px;">Vlaga:</text>
                 <p style="color:blue"> @Html.DisplayFor(modelItem => Model.ElementAt(11).Vlaga)%</p>
+                <a href="/Podatki/PostajaLive/12" style="color:orangered;font-size:12px;"><u>LIVE</u></a>
             </div>
         </div>
     </div>
