@@ -4,30 +4,15 @@
 @{
     ViewBag.Title = "Podatki";
 }
+
+@using X.PagedList.Mvc; 
+@using X.PagedList; 
+<head>
+    <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+</head>
+
 <div class="container">
     <h2 id="podatki">Podatki</h2>
-    @*<div class="btn-group">
-            <a href="/Podatki" class="btn btn-primary btnmoj">Vsi podatki</a>
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle btnmoj" data-toggle="dropdown">
-                    Postaje <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="/Podatki/Postaja/1">Postaja 1</a></li>
-                    <li><a href="/Podatki/Postaja/2">Postaja 2</a></li>
-                    <li><a href="/Podatki/Postaja/3">Postaja 3</a></li>
-                    <li><a href="/Podatki/Postaja/4">Postaja 4</a></li>
-                    <li><a href="/Podatki/Postaja/5">Postaja 5</a></li>
-                    <li><a href="/Podatki/Postaja/6">Postaja 6</a></li>
-                    <li><a href="/Podatki/Postaja/7">Postaja 7</a></li>
-                    <li><a href="/Podatki/Postaja/8">Postaja 8</a></li>
-                    <li><a href="/Podatki/Postaja/9">Postaja 9</a></li>
-                    <li><a href="/Podatki/Postaja/10">Postaja 10</a></li>
-                    <li><a href="/Podatki/Postaja/11">Postaja 11</a></li>
-                    <li><a href="/Podatki/Postaja/12">Postaja 12</a></li>
-                </ul>
-            </div>
-        </div>*@
 
     <div class="chart-container" style="border:2px solid black;border-radius:4px;background-color:rgba(255, 255, 255, 0.60);position:relative;width:100%;height:400px;min-width:300px;margin-top:20px;">
         <canvas id="bar-chart"></canvas>
@@ -52,28 +37,31 @@
             </th>
         </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdPostaje)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cas)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Temp)°C
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Vlaga)%
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Padavine)
-                </td>
-            </tr>
-        }
+        @foreach (var item in ViewBag.OnePageOfData)
+    {
+        <tr>
+            <td>
+                @item.IdPostaje
+            </td>
+            <td>
+                @item.Cas
+            </td>
+            <td>
+                @item.Temp°C
+            </td>
+            <td>
+                @item.Vlaga%
+            </td>
+            <td>
+                @item.Padavine mm
+            </td>
+        </tr>
+}
 
     </table>
+    <div class="text-center">
+        @Html.PagedListPager((IPagedList)ViewBag.OnePageOfData, page => Url.Action("Index", new { page }))
+    </div>
 </div>
 
 <script>

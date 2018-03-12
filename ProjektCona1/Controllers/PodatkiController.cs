@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProjektCona1.Models;
+using X.PagedList;
 
 namespace ProjektCona1.Controllers
 {
@@ -15,13 +16,22 @@ namespace ProjektCona1.Controllers
         private pc1Context db = new pc1Context();
 
         // GET: Podatki
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var data = (from x in db.Podatkis
+            var dataGraph = (from x in db.Podatkis
                         orderby x.Id descending
                         select x).Take(108);
 
-            var tpovp = from t in data
+            var dataTable = (from x in db.Podatkis
+                        orderby x.Id descending
+                        select x).Take(12000);
+
+            var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
+            var onePageOfData = dataTable.ToPagedList(pageNumber, 60); // will only contain 25 products max because of the pageSize
+
+            ViewBag.OnePageOfData = onePageOfData;
+
+            var tpovp = from t in dataGraph
                         group t by new
                         {
                             t.Cas
@@ -32,7 +42,7 @@ namespace ProjektCona1.Controllers
                             g.Key.Cas
                         };
 
-            var vlpovp = from t in data
+            var vlpovp = from t in dataGraph
                         group t by new
                         {
                             t.Cas
@@ -46,7 +56,7 @@ namespace ProjektCona1.Controllers
             ViewData["TempAvg"] = tpovp;
             ViewData["VlagaAvg"] = vlpovp;
 
-            return View(data);
+            return View(dataTable);
         }
 
         public ActionResult Postaja(int? id)
