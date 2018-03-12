@@ -52,8 +52,14 @@ namespace ProjektCona1.Controllers
                 ViewData["temp"] = podatki.metData.t;
                 ViewData["smer"] = podatki.metData.dd_icon;
                 ViewData["vlaga"] = podatki.metData.rh;
+
+                if (podatki.metData.nn_icon == "")
+                    ViewData["oblacnost"] = "unknown";
+                else
                 ViewData["oblacnost"] = podatki.metData.nn_icon;
+                
                 ViewData["pojavi"] = podatki.metData.wwsyn_icon;
+                
             }
             else
             {
@@ -63,6 +69,7 @@ namespace ProjektCona1.Controllers
                     ViewData["delDan"] = "night";
                 else
                     ViewData["deldan"] = "day";
+
                 ViewData["temp"] = "?";
                 ViewData["smer"] = "?";
                 ViewData["vlaga"] = "?";

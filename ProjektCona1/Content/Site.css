@@ -246,6 +246,14 @@ textarea {
 
 /*#region Oblačnost */
 
+.dayunknown {
+    background-image: url('../../Slike/unknown.png');
+}
+
+.nightunknown {
+    background-image: url('../../Slike/unknown.png');
+}
+
 .dayclear {
     background-image: url('../../Slike/clear.png')
 }
