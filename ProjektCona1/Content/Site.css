@@ -237,7 +237,8 @@ textarea {
     width: 45px;
     position: absolute;
     right: 15px;
-    bottom: 15px;
+    bottom: 0;
+    background-size: cover;
 }
 
 /*day, night*/
@@ -315,5 +316,37 @@ textarea {
     RASN lightRASN modRASN heavyRASN SN lightSN modSN heavySN SHRA lightSHRA modSHRA heavySHRA SHRASN lightSHRASN modSHRASN heavySHRASN 
     SHSN lightSHSN modSHSN heavySHSN SHGR lightSHGR modSHGR heavySHGR TS lightTS modTS heavyTS TSRA lightTSRA modTSRA heavyTSRA 
     TSRASN lightTSRASN modTSRASN heavyTSRASN TSSN lightTSSN modTSSN heavyTSSN TSGR lightTSGR modTSGR heavyTSGR*/
+
+/*#region Pojavi */
+
+[class*="DZ"] {
+    background-image: url('../Slike/rain03.png');
+}
+
+[class*="TS"] {
+    background-image: url('../Slike/thunder.png');
+}
+
+[class*="RA"] {
+    background-image: url('../Slike/rain03.png');
+}
+
+[class*="SN"] {
+    background-image: url('../Slike/snow.png');
+}
+
+[class*="FZ"] {
+    background-image: url('../Slike/freezingrain.png');
+}
+
+[class*="RASN"] {
+    background-image: url('../Slike/rain.png') url('../Slike/snow.png');
+}
+
+[class*="SHGR"] {
+    background-image: url('../Slike/rain03.png');
+}
+
+/*#endregion */
 
     /*#endregion*/
