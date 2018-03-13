@@ -23,7 +23,7 @@ textarea {
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 200px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
+    z-index: 2; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
     background-color: rgba(27, 60, 139,0.9); /* BlueDark */
@@ -99,17 +99,26 @@ textarea {
 }
 
 .btnmoj {
+    color: white;
     background-color: #1B3C8B;
     border:0;
 }
 
     .btnmoj:hover {
-        background-color: #98C222;
+        color: white;
+        background-color: rgb(40, 88, 200);
     }
+
+    .btnmoj.active,
+    .btnmoj.focus,
+    .btnmoj:active,
     .btnmoj:focus {
+        color: white;
         background-color: #98C222;
+        outline:none;
     }
-        .jezik:hover {
+
+.jezik:hover {
     box-shadow: 0 0 5px 5px rgba(255,255,255,0.5);
 }
 
@@ -245,6 +254,13 @@ textarea {
 /*clear, mostClear, slightCloudy, partCloudy, modCloudy, prevCloudy, overcast, FG*/
 
 /*#region Oblačnost */
+.day {
+    background-image: url('../../Slike/unknown.png');
+}
+
+.night {
+    background-image: url('../../Slike/unknown.png');
+}
 
 .dayunknown {
     background-image: url('../../Slike/unknown.png');

@@ -7,21 +7,13 @@
 <div class="container">
     <h2 id="podatki">Postaja @ViewData["id"]</h2>
     <div class="btn-group" id="obdobje">
-        <a href="#" id="danbtn" class="btn btn-primary btnmoj">Dan</a>
-        <a href="#" id="tedenbtn"  class="btn btn-primary btnmoj">Teden</a>
-        <a href="#" id="mesecbtn"  class="btn btn-primary btnmoj">Mesec</a>
+        <a href="#" id="danbtn" class="btn btn-default btnmoj focus" onclick="danChart()">Dan</a>
+        <a href="#" id="tedenbtn" class="btn btnmoj" onclick="tedenChart()">Teden</a>
+        <a href="#" id="mesecbtn" class="btn btnmoj" onclick="mesecChart()">Mesec</a>
     </div>
 
-    <div id="chart-dan"  style="border:2px solid black;border-radius:4px;background-color:rgba(255, 255, 255, 0.60);position:relative;width:100%;height:400px;min-width:300px;margin-top:20px;">
-        <canvas id="bar-chart-dan"></canvas>
-    </div>
-
-    <div id="chart-teden"  style="border:2px solid black;border-radius:4px;background-color:rgba(255, 255, 255, 0.60);position:relative;width:100%;height:400px;min-width:300px;margin-top:20px;">
-        <canvas id="bar-chart-teden"></canvas>
-    </div>
-
-    <div id="chart-mesec"  style="border:2px solid black;border-radius:4px;background-color:rgba(255, 255, 255, 0.60);position:relative;width:100%;height:400px;min-width:300px;margin-top:20px;">
-        <canvas id="bar-chart-mesec"></canvas>
+    <div id="chart-container" style="border:2px solid black;border-radius:4px;background-color:rgba(255, 255, 255, 0.60);position:relative;width:100%;height:400px;min-width:300px;margin-top:20px;">
+        <canvas id="bar-chart"></canvas>
     </div>
 
     <table class="table table-hover" style="background-color:rgba(255, 255, 255, 0.60);border:2px solid black;border-radius:4px;margin-top:20px;">
@@ -64,6 +56,18 @@
 @*Dan*@
 <script>
 
+    $(".btn-group > .btn").click(function () {
+        $(".btn-group > .btn").removeClass("focus");
+        $(this).addClass("focus");
+    });
+
+    $(document).ready(danChart());
+
+    function danChart() {
+
+        $('#bar-chart').remove(); // this is my <canvas> element
+        $('#chart-container').append('<canvas id="bar-chart"></canvas>');
+
     var podatki = @Html.Raw(Json.Encode(ViewData["Dan"]));
 
     var temp = podatki.map(function (item) {
@@ -86,75 +90,77 @@
         return item.Vlaga
     });
 
-    new Chart(document.getElementById("bar-chart-dan"), {
-        type: 'bar',
-        data: {
-            labels:  datumi,
-            datasets: [
-            {
-                type: 'line',
-                label: "Temperatura",
-                backgroundColor: 'orangered',
-                borderColor: 'orangered',
-                borderWidth: 2,
-                data: temp,
-                fill: false,
-                yAxisID: 'yaxis2',
-                cubicInterpolationMode: 'monotone'
-            },
-                {
-                    type: 'bar',
-                    label: "Vlaga",
-                    borderColor: '#A1ABDE',
-                    backgroundColor: "#A1ABDE",
-                    hoverBackgroundColor: "#959EC7",
-                    hoverBorderColor: "#959EC7",
-                    borderWidth: 2,
-                    data: vlaga,
-                    yAxisID: 'yaxis1'
-                }
+    
 
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                xAxes: [{
-                    barPercentage: 0.8,
-                    categoryPercentage: 1,
-                    ticks: {
-                        callback: function (tick, index, array) {
-                            return (index % 2) ? "" : tick;
+        new Chart(document.getElementById("bar-chart"), {
+            type: 'bar',
+            data: {
+                labels: datumi,
+                datasets: [
+                    {
+                        type: 'line',
+                        label: "Temperatura",
+                        backgroundColor: 'orangered',
+                        borderColor: 'orangered',
+                        borderWidth: 2,
+                        data: temp,
+                        fill: false,
+                        yAxisID: 'yaxis2',
+                        cubicInterpolationMode: 'monotone'
+                    },
+                    {
+                        type: 'bar',
+                        label: "Vlaga",
+                        borderColor: '#A1ABDE',
+                        backgroundColor: "#A1ABDE",
+                        hoverBackgroundColor: "#959EC7",
+                        hoverBorderColor: "#959EC7",
+                        borderWidth: 2,
+                        data: vlaga,
+                        yAxisID: 'yaxis1'
+                    }
+
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        barPercentage: 0.8,
+                        categoryPercentage: 1,
+                        ticks: {
+                            callback: function (tick, index, array) {
+                                return (index % 2) ? "" : tick;
+                            },
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Datum',
+                            fontSize: 11
+                        },
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Vlaga',
+                            fontSize: 11
+                        },
+                        barPercentage: 0.85,
+                        categoryPercentage: 1,
+                        type: 'linear',
+                        id: 'yaxis1',
+                        display: true,
+                        position: 'right',
+                        ticks: {
+                            max: 100,
+                            beginAtZero: true,
+                            callback: function (value, index, values) {
+                                return value + '%';
+                            }
                         },
                     },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Datum',
-                        fontSize: 11
-                    },
-                }],
-                yAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Vlaga',
-                        fontSize: 11
-                    },
-                    barPercentage: 0.85,
-                    categoryPercentage: 1,
-                    type: 'linear',
-                    id: 'yaxis1',
-                    display: true,
-                    position: 'right',
-                    ticks: {
-                        max: 100,
-                        beginAtZero: true,
-                        callback: function (value, index, values) {
-                            return value + '%';
-                        }
-                    },
-                },
                     {
                         display: true,
                         scaleLabel: {
@@ -177,24 +183,29 @@
                             drawOnChartArea: false,
                         }
                     }]
-            },
-            legend: { display: true },
-            tooltips: {
-                mode: 'index',
-                intersect: false
-            },
-            title: {
-                display: true,
-                text: 'Temperatura in vlaga zadnjih 24ur',
-                fontSize: 16
-            },
-            showXLabels: 10
-        }
-    });
+                },
+                legend: { display: true },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                title: {
+                    display: true,
+                    text: 'Temperatura in vlaga zadnjih 24ur',
+                    fontSize: 16
+                },
+                showXLabels: 10
+            }
+        });
+    }
 </script>
 
 @*Teden*@
 <script>
+    function tedenChart() {
+
+        $('#bar-chart').remove(); // this is my <canvas> element
+        $('#chart-container').append('<canvas id="bar-chart"></canvas>');
 
     var podatki = @Html.Raw(Json.Encode(ViewData["Teden"]));
 
@@ -221,81 +232,84 @@
         return item.vlagaAVG
     });
 
-    new Chart(document.getElementById("bar-chart-teden"), {
-        type: 'bar',
-        data: {
-            labels:  datumi,
-            datasets: [
-            {
-                type: 'line',
-                label: "Temperatura MAX",
-                backgroundColor: 'orangered',
-                borderColor: 'orangered',
-                borderWidth: 2,
-                data: tempMax,
-                fill: false,
-                yAxisID: 'yaxis2',
-                cubicInterpolationMode: 'monotone'
-                },
-            {
-                type: 'line',
-                label: "Temperatura MIN",
-                backgroundColor: '#08349F',
-                borderColor: '#08349F',
-                borderWidth: 2,
-                data: tempMin,
-                fill: false,
-                yAxisID: 'yaxis2',
-                cubicInterpolationMode: 'monotone'
-            },
-                {
-                    type: 'bar',
-                    label: "Vlaga",
-                    borderColor: '#A1ABDE',
-                    backgroundColor: "#A1ABDE",
-                    hoverBackgroundColor: "#959EC7",
-                    hoverBorderColor: "#959EC7",
-                    borderWidth: 2,
-                    data: vlaga,
-                    yAxisID: 'yaxis1'
-                }
+    
 
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                xAxes: [{
-                    barPercentage: 0.6,
-                    categoryPercentage: 1,
-                    scaleLabel: {
+
+        new Chart(document.getElementById("bar-chart"), {
+            type: 'bar',
+            data: {
+                labels: datumi,
+                datasets: [
+                    {
+                        type: 'line',
+                        label: "Temperatura MAX",
+                        backgroundColor: 'orangered',
+                        borderColor: 'orangered',
+                        borderWidth: 2,
+                        data: tempMax,
+                        fill: false,
+                        yAxisID: 'yaxis2',
+                        cubicInterpolationMode: 'monotone'
+                    },
+                    {
+                        type: 'line',
+                        label: "Temperatura MIN",
+                        backgroundColor: '#08349F',
+                        borderColor: '#08349F',
+                        borderWidth: 2,
+                        data: tempMin,
+                        fill: false,
+                        yAxisID: 'yaxis2',
+                        cubicInterpolationMode: 'monotone'
+                    },
+                    {
+                        type: 'bar',
+                        label: "Vlaga",
+                        borderColor: '#A1ABDE',
+                        backgroundColor: "#A1ABDE",
+                        hoverBackgroundColor: "#959EC7",
+                        hoverBorderColor: "#959EC7",
+                        borderWidth: 2,
+                        data: vlaga,
+                        yAxisID: 'yaxis1'
+                    }
+
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        barPercentage: 0.6,
+                        categoryPercentage: 1,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Datum',
+                            fontSize: 11
+                        },
+                    }],
+                    yAxes: [{
                         display: true,
-                        labelString: 'Datum',
-                        fontSize: 11
-                    },
-                }],
-                yAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        labelString: 'Vlaga',
-                        fontSize: 11
-                    },
-                    barPercentage: 0.9,
-                    categoryPercentage: 1,
-                    type: 'linear',
-                    id: 'yaxis1',
-                    display: true,
-                    position: 'right',
+                        scaleLabel: {
+                            labelString: 'Vlaga',
+                            fontSize: 11
+                        },
+                        barPercentage: 0.9,
+                        categoryPercentage: 1,
+                        type: 'linear',
+                        id: 'yaxis1',
                         display: true,
-                    ticks: {
-                        max: 100,
-                        beginAtZero: true,
-                        callback: function (value, index, values) {
-                            return value + '%';
-                        }
+                        position: 'right',
+                        display: true,
+                        ticks: {
+                            max: 100,
+                            beginAtZero: true,
+                            callback: function (value, index, values) {
+                                return value + '%';
+                            }
+                        },
                     },
-                },
                     {
                         display: true,
                         scaleLabel: {
@@ -318,24 +332,29 @@
                             drawOnChartArea: false,
                         }
                     }]
-            },
-            legend: { display: true },
-            tooltips: {
-                mode: 'index',
-                intersect: false
-            },
-            title: {
-                display: true,
-                text: 'Temperatura in vlaga zadnjih 7 dni',
-                fontSize: 16
-            },
-            showXLabels: 10
-        }
-    });
+                },
+                legend: { display: true },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                title: {
+                    display: true,
+                    text: 'Temperatura in vlaga zadnjih 7 dni',
+                    fontSize: 16
+                },
+                showXLabels: 10
+            }
+        });
+    }
 </script>
 
 @*Mesec*@
 <script>
+    function mesecChart() {
+
+        $('#bar-chart').remove(); // this is my <canvas> element
+        $('#chart-container').append('<canvas id="bar-chart"></canvas>');
 
     var podatki = @Html.Raw(Json.Encode(ViewData["Mesec"]));
 
@@ -361,82 +380,84 @@
     var vlaga = podatki.map(function (item) {
         return item.vlagaAVG
     });
+    
 
-    new Chart(document.getElementById("bar-chart-mesec"), {
-        type: 'bar',
-        data: {
-            labels:  datumi,
-            datasets: [
-            {
-                type: 'line',
-                label: "Temperatura MAX",
-                backgroundColor: 'orangered',
-                borderColor: 'orangered',
-                borderWidth: 2,
-                data: tempMax,
-                fill: false,
-                yAxisID: 'yaxis2',
-                cubicInterpolationMode: 'monotone'
-                },
-            {
-                type: 'line',
-                label: "Temperatura MIN",
-                backgroundColor: '#08349F',
-                borderColor: '#08349F',
-                borderWidth: 2,
-                data: tempMin,
-                fill: false,
-                yAxisID: 'yaxis2',
-                cubicInterpolationMode: 'monotone'
+
+        new Chart(document.getElementById("bar-chart"), {
+            type: 'bar',
+            data: {
+                labels: datumi,
+                datasets: [
+                    {
+                        type: 'line',
+                        label: "Temperatura MAX",
+                        backgroundColor: 'orangered',
+                        borderColor: 'orangered',
+                        borderWidth: 2,
+                        data: tempMax,
+                        fill: false,
+                        yAxisID: 'yaxis2',
+                        cubicInterpolationMode: 'monotone'
+                    },
+                    {
+                        type: 'line',
+                        label: "Temperatura MIN",
+                        backgroundColor: '#08349F',
+                        borderColor: '#08349F',
+                        borderWidth: 2,
+                        data: tempMin,
+                        fill: false,
+                        yAxisID: 'yaxis2',
+                        cubicInterpolationMode: 'monotone'
+                    },
+                    {
+                        type: 'bar',
+                        label: "Vlaga",
+                        borderColor: '#A1ABDE',
+                        backgroundColor: "#A1ABDE",
+                        hoverBackgroundColor: "#959EC7",
+                        hoverBorderColor: "#959EC7",
+                        borderWidth: 2,
+                        data: vlaga,
+                        yAxisID: 'yaxis1'
+                    }
+
+                ]
             },
-                {
-                    type: 'bar',
-                    label: "Vlaga",
-                    borderColor: '#A1ABDE',
-                    backgroundColor: "#A1ABDE",
-                    hoverBackgroundColor: "#959EC7",
-                    hoverBorderColor: "#959EC7",
-                    borderWidth: 2,
-                    data: vlaga,
-                    yAxisID: 'yaxis1'
-                }
-
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                xAxes: [{
-                    barPercentage: 0.7,
-                    categoryPercentage: 1,
-                    scaleLabel: {
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        barPercentage: 0.7,
+                        categoryPercentage: 1,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Datum',
+                            fontSize: 11
+                        },
+                    }],
+                    yAxes: [{
                         display: true,
-                        labelString: 'Datum',
-                        fontSize: 11
-                    },
-                }],
-                yAxes: [{
-                    display: true,
-                    scaleLabel: {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Vlaga',
+                            fontSize: 11
+                        },
+                        barPercentage: 0.9,
+                        categoryPercentage: 1,
+                        type: 'linear',
+                        id: 'yaxis1',
                         display: true,
-                        labelString: 'Vlaga',
-                        fontSize: 11
+                        position: 'right',
+                        ticks: {
+                            max: 100,
+                            beginAtZero: true,
+                            callback: function (value, index, values) {
+                                return value + '%';
+                            }
+                        },
                     },
-                    barPercentage: 0.9,
-                    categoryPercentage: 1,
-                    type: 'linear',
-                    id: 'yaxis1',
-                    display: true,
-                    position: 'right',
-                    ticks: {
-                        max: 100,
-                        beginAtZero: true,
-                        callback: function (value, index, values) {
-                            return value + '%';
-                        }
-                    },
-                },
                     {
                         display: true,
                         scaleLabel: {
@@ -459,18 +480,19 @@
                             drawOnChartArea: false,
                         }
                     }]
-            },
-            legend: { display: true },
-            tooltips: {
-                mode: 'index',
-                intersect: false
-            },
-            title: {
-                display: true,
-                text: 'Temperatura in vlaga zadnjih 30 dni',
-                fontSize: 16
-            },
-            showXLabels: 10
-        }
-    });
+                },
+                legend: { display: true },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                title: {
+                    display: true,
+                    text: 'Temperatura in vlaga zadnjih 30 dni',
+                    fontSize: 16
+                },
+                showXLabels: 10
+            }
+        });
+    }
 </script>

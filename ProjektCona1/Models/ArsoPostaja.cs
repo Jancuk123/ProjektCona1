@@ -374,9 +374,9 @@ namespace ProjektCona1.Models
 
         private string nn_iconField;
 
-        private object nn_shortTextField;
+        private string nn_shortTextField;
 
-        private object nn_decodeTextField;
+        private string nn_decodeTextField;
 
         private string wwsyn_iconField;
 
@@ -414,7 +414,7 @@ namespace ProjektCona1.Models
 
         private object windchillField;
 
-        private object vis_valueField;
+        private byte vis_valueField;
 
         private string vis_unitField;
 
@@ -436,7 +436,7 @@ namespace ProjektCona1.Models
 
         private string dd_var_unitField;
 
-        private byte dd_valField;
+        private ushort dd_valField;
 
         private string dd_iconField;
 
@@ -854,7 +854,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public object nn_shortText
+        public string nn_shortText
         {
             get
             {
@@ -867,7 +867,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public object nn_decodeText
+        public string nn_decodeText
         {
             get
             {
@@ -1115,7 +1115,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public object vis_value
+        public byte vis_value
         {
             get
             {
@@ -1258,7 +1258,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public byte dd_val
+        public ushort dd_val
         {
             get
             {

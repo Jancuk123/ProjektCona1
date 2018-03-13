@@ -50,7 +50,7 @@
     .pagination > .active > span:hover,
     .pagination > .active > a:focus,
     .pagination > .active > span:focus {
-        z-index: 2;
+        z-index: 1;
         color: white;
         cursor: default;
         background-color: #98C222;
