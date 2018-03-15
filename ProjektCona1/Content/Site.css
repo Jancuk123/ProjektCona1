@@ -187,25 +187,25 @@ textarea {
         margin-top: 40px;
         padding-top: 20px;
         margin-top: 40px;
-        
     }
 
         .sidenav a {
             font-size: 18px;
-            padding:10px 0px 6px 18px;
+            padding: 10px 0px 6px 18px;
         }
 
         .sidenav .collapse a {
             font-size: 14px;
         }
 
-      
+
 
     #conalogo {
         margin-top: 2px;
         margin-bottom: 2px;
         height: 50px;
     }
+
         #conalogo:hover {
             box-shadow: 0 0 2px 2px rgba(255,255,255,0.5);
         }
@@ -286,7 +286,7 @@ textarea {
     background-image: url('../../Slike/partlycloudy.png')
 }
 
-.daymodCloud {
+.daymodCloudy {
     background-image: url('../../Slike/partlysunny.png')
 }
 
@@ -318,7 +318,7 @@ textarea {
     background-image: url('../../Slike/partlycloundynight.png')
 }
 
-.nightmodCloud {
+.nightmodCloudy {
     background-image: url('../../Slike/cloudynight.png')
 }
 
