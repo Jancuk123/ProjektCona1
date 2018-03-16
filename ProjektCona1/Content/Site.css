@@ -220,6 +220,12 @@ textarea {
 
 }
 
+@media (max-width: 540px) {
+    .sidenav > .podatki {
+        display: none;
+    }
+}
+
 
 @media (max-width: 350px) {
 
