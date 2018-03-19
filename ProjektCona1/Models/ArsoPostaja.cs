@@ -428,15 +428,15 @@ namespace ProjektCona1.Models
 
         private string td_var_unitField;
 
-        private byte tdField;
+        private sbyte tdField;
 
-        private byte td_degreesCField;
+        private sbyte td_degreesCField;
 
         private string dd_var_descField;
 
         private string dd_var_unitField;
 
-        private ushort dd_valField;
+        private byte dd_valField;
 
         private string dd_iconField;
 
@@ -474,9 +474,9 @@ namespace ProjektCona1.Models
 
         private string ffmax_var_unitField;
 
-        private object ffmax_valField;
+        private decimal ffmax_valField;
 
-        private object ffmax_val_kmhField;
+        private byte ffmax_val_kmhField;
 
         private string msl_var_descField;
 
@@ -1206,7 +1206,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public byte td
+        public sbyte td
         {
             get
             {
@@ -1219,7 +1219,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public byte td_degreesC
+        public sbyte td_degreesC
         {
             get
             {
@@ -1258,7 +1258,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public ushort dd_val
+        public byte dd_val
         {
             get
             {
@@ -1505,7 +1505,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public object ffmax_val
+        public decimal ffmax_val
         {
             get
             {
@@ -1518,7 +1518,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public object ffmax_val_kmh
+        public byte ffmax_val_kmh
         {
             get
             {

@@ -20,14 +20,19 @@ namespace ProjektCona1
             HttpResponseMessage response = client.GetAsync(new Uri("http://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/sl/observation_NOVA-GOR_latest.xml")).Result;
             if (response.IsSuccessStatusCode)
             {
-                try { 
-                var x = response.Content.ReadAsStreamAsync().Result;
-                XmlSerializer ser = new XmlSerializer(typeof(data));
-                Stream rawXml = x;
-                var p = ser.Deserialize(rawXml) as data;
-                return p;
+                try
+                {
+                    var x = response.Content.ReadAsStreamAsync().Result;
+                    XmlSerializer ser = new XmlSerializer(typeof(data));
+                    Stream rawXml = x;
+                    var p = ser.Deserialize(rawXml) as data;
+                    return p;
                 }
-                catch { return null; }
+                catch
+                {
+                    return null;
+                }
+                
                 
             }
             else
