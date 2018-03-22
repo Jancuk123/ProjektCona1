@@ -304,6 +304,7 @@
     <Content Include="Views\Shared\_LayoutIta.cshtml" />
     <Content Include="Views\Podatki\Postaja.cshtml" />
     <Content Include="Views\Podatki\PostajaLive.cshtml" />
+    <Content Include="Views\Podatki\_podatki.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

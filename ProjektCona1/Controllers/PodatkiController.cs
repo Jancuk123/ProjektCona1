@@ -122,5 +122,17 @@ namespace ProjektCona1.Controllers
             return View(data);
         }
 
+        public ActionResult _PostajaLive(int? id)
+        {
+            int stevilka = id ?? 1;
+
+            var data = (from x in db.Podatkis
+                        where x.IdPostaje == stevilka
+                        orderby x.Id descending
+                        select x).Take(10);
+
+            return View("_podatki", data);
+        }
+
     }
 }
