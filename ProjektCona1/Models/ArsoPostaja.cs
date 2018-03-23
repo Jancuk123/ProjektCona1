@@ -452,7 +452,7 @@ namespace ProjektCona1.Models
 
         private string ff_var_unitField;
 
-        private decimal ff_valField;
+        private byte ff_valField;
 
         private byte ff_val_kmhField;
 
@@ -474,9 +474,9 @@ namespace ProjektCona1.Models
 
         private string ffmax_var_unitField;
 
-        private decimal ffmax_valField;
+        private object ffmax_valField;
 
-        private byte ffmax_val_kmhField;
+        private object ffmax_val_kmhField;
 
         private string msl_var_descField;
 
@@ -1362,7 +1362,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public decimal ff_val
+        public byte ff_val
         {
             get
             {
@@ -1505,7 +1505,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public decimal ffmax_val
+        public object ffmax_val
         {
             get
             {
@@ -1518,7 +1518,7 @@ namespace ProjektCona1.Models
         }
 
         /// <remarks/>
-        public byte ffmax_val_kmh
+        public object ffmax_val_kmh
         {
             get
             {
