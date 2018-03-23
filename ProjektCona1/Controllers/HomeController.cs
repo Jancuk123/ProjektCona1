@@ -80,6 +80,7 @@ namespace ProjektCona1.Controllers
             var data = from element in db1.Podatkis
                        group element by element.IdPostaje
                        into groups
+                       orderby groups.Key
                        select groups.OrderByDescending(p => p.Id).FirstOrDefault();
             return View(data);
         }

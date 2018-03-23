@@ -7,6 +7,21 @@
 <div class="container">
     <h2 id="podatki">Postaja @ViewData["id"] ~ <i style="color:red">LIVE</i></h2>
 
+    <div class="btn-group">
+        <a href="/Podatki/PostajaLive/1" class="btn btnmoj">1</a>
+        <a href="/Podatki/PostajaLive/2" class="btn btnmoj">2</a>
+        <a href="/Podatki/PostajaLive/3" class="btn btnmoj">3</a>
+        <a href="/Podatki/PostajaLive/4" class="btn btnmoj">4</a>
+        <a href="/Podatki/PostajaLive/5" class="btn btnmoj">5</a>
+        <a href="/Podatki/PostajaLive/6" class="btn btnmoj">6</a>
+        <a href="/Podatki/PostajaLive/7" class="btn btnmoj">7</a>
+        <a href="/Podatki/PostajaLive/8" class="btn btnmoj">8</a>
+        <a href="/Podatki/PostajaLive/9" class="btn btnmoj">9</a>
+        <a href="/Podatki/PostajaLive/10" class="btn btnmoj">10</a>
+        <a href="/Podatki/PostajaLive/11" class="btn btnmoj">11</a>
+        <a href="/Podatki/PostajaLive/12" class="btn btnmoj">12</a>
+    </div>
+
     <div id="live">
         @Html.Partial("_podatki", Model, new ViewDataDictionary { { "id", ViewData["id"] } })
     </div>
@@ -14,6 +29,6 @@
 
 <script>
     $(function () {
-        setInterval(function () { $('#live').load('/Podatki/_PostajaLive') }, 10000);
+        setInterval(function () { $('#live').load('/Podatki/_PostajaLive/@ViewData["id"]') }, 10000);
     });
 </script>

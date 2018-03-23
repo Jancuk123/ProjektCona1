@@ -58,6 +58,13 @@ textarea {
     flex-direction: column;
 }
 
+.livelink {
+    color:orangered;
+    font-size:12px;
+}
+.livelink:hover {
+    color:orange;
+}
 
 .navbtnstil1 {
     border: none;

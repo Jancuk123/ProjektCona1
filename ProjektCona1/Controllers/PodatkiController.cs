@@ -18,14 +18,13 @@ namespace ProjektCona1.Controllers
         // GET: Podatki
         public ActionResult Index(int? page)
         {
-            var dataGraph = (from x in db.Podatkis
-                        orderby x.Id descending
-                        select x).Take(108);
-
             var dataTable = (from x in db.Podatkis
                         orderby x.Id descending
                         select x).Take(12000);
-
+            
+            var dataGraph = (from x in dataTable
+                        orderby x.Id descending
+                        select x).Take(108);
             var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
             var onePageOfData = dataTable.ToPagedList(pageNumber, 60); // will only contain 25 products max because of the pageSize
 
@@ -117,9 +116,13 @@ namespace ProjektCona1.Controllers
                         orderby x.Id descending
                         select x).Take(10);
 
+            var model = from x in data
+                        orderby x.Id
+                        select x;
+
             ViewData["id"] = stevilka;
 
-            return View(data);
+            return View(model);
         }
 
         public ActionResult _PostajaLive(int? id)
@@ -131,7 +134,11 @@ namespace ProjektCona1.Controllers
                         orderby x.Id descending
                         select x).Take(10);
 
-            return View("_podatki", data);
+            var model = from x in data
+                        orderby x.Id
+                        select x;
+
+            return View("_podatki", model);
         }
 
     }
