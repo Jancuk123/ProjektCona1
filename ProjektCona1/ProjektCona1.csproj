@@ -205,12 +205,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BralnikXML.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PodatkiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper.cs" />
     <Compile Include="Migrations\201801251311180_InitialCreate.cs" />
     <Compile Include="Migrations\201801251311180_InitialCreate.Designer.cs">
       <DependentUpon>201801251311180_InitialCreate.cs</DependentUpon>
@@ -220,9 +220,9 @@
       <DependentUpon>201802281240086_AddPadavine.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ArsoPostaja.cs" />
     <Compile Include="Models\pc1Context.cs" />
     <Compile Include="Models\Podatki.cs" />
+    <Compile Include="Models\Vreme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

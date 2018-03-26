@@ -12,15 +12,15 @@ namespace ProjektCona1.Controllers
         private pc1Context db1 = new pc1Context();
         public ActionResult Index()
         {
-            data podatki = Helper.Beri();
+            Vreme podatki = BralnikXML.Branje();
 
-            //16.01.2018 15:30 CET
-            //01234567890123456789
+            //16.01.2018 15:30 CEST
+            //012345678901234567890
             //16.01.2018 9:30 CET
             if (podatki != null)
             {
-                string zadnjiDatum = podatki.metData.valid;
-                if (zadnjiDatum.Length == 20)
+                string zadnjiDatum = podatki.Datum;
+                if (zadnjiDatum.Length == 21)
                 {
                     int dan = int.Parse(zadnjiDatum.Substring(0, 2));
                     int mesec = int.Parse(zadnjiDatum.Substring(3, 2));
@@ -49,16 +49,16 @@ namespace ProjektCona1.Controllers
                         ViewData["deldan"] = "day";
                 }
 
-                ViewData["temp"] = podatki.metData.t;
-                ViewData["smer"] = podatki.metData.dd_icon;
-                ViewData["vlaga"] = podatki.metData.rh;
+                ViewData["temp"] = podatki.Temperatura;
+                ViewData["smer"] = podatki.SmerV;
+                ViewData["vlaga"] = podatki.Vlaga;
 
-                if (podatki.metData.nn_icon == "")
+                if (podatki.Oblacnost == "")
                     ViewData["oblacnost"] = "unknown";
                 else
-                ViewData["oblacnost"] = podatki.metData.nn_icon;
+                ViewData["oblacnost"] = podatki.Oblacnost;
                 
-                ViewData["pojavi"] = podatki.metData.wwsyn_icon;
+                ViewData["pojavi"] = podatki.Pojavi;
                 
             }
             else
