@@ -13,9 +13,9 @@ namespace ProjektCona1.Controllers
         public ActionResult Index()
         {
             Vreme podatki = BralnikXML.Branje();
-
+            string stopnja = BralnikXML.Alarm();
             //16.01.2018 15:30 CEST
-            //012345678901234567890
+            //012345678901234567890   !!!
             //16.01.2018 9:30 CET
             if (podatki != null)
             {
@@ -52,15 +52,25 @@ namespace ProjektCona1.Controllers
                 ViewData["temp"] = podatki.Temperatura;
                 ViewData["smer"] = podatki.SmerV;
                 ViewData["vlaga"] = podatki.Vlaga;
+                ViewData["moc"] = podatki.MocV;
+                ViewData["hitrost"] = podatki.HitrostV;
+
+                if (podatki.Padavine24h == "")
+                {
+                    podatki.Padavine24h = "" + 0;
+                    ViewData["padavine"] = podatki.Padavine24h;
+                }
+                else
+                    ViewData["padavine"] = podatki.Padavine24h;
 
                 if (podatki.Oblacnost == "")
                     ViewData["oblacnost"] = "unknown";
                 else
-                ViewData["oblacnost"] = podatki.Oblacnost;
-                
+                    ViewData["oblacnost"] = podatki.Oblacnost;
+
                 ViewData["pojavi"] = podatki.Pojavi;
-                
-            }
+
+            }  //vreme
             else
             {
                 DateTime datum = DateTime.Now;
@@ -73,9 +83,30 @@ namespace ProjektCona1.Controllers
                 ViewData["temp"] = "?";
                 ViewData["smer"] = "?";
                 ViewData["vlaga"] = "?";
+                ViewData["moc"] = "?";
+                ViewData["hitrost"] = "?";
+                ViewData["padavine"] = "?";
                 ViewData["oblacnost"] = "";
                 ViewData["pojavi"] = "";
             }
+            if (stopnja != null)
+            {
+                if (stopnja.Contains("1/4") == true)
+                    ViewData["stopnja"] = "prvastopnja";
+                else
+                     if (stopnja.Contains("2/4") == true)
+                    ViewData["stopnja"] = "drugastopnja";
+                else
+                         if (stopnja.Contains("3/4") == true)
+                    ViewData["stopnja"] = "tretjastopnja";
+                else
+                             if (stopnja.Contains("4/4") == true)
+                    ViewData["stopnja"] = "cetrtastopnja";
+                else
+                    ViewData["stopnja"] = "nistopnje";
+            }    //alarm
+            else
+                ViewData["stopnja"] = "nistopnje";
 
             var data = from element in db1.Podatkis
                        group element by element.IdPostaje
@@ -83,6 +114,16 @@ namespace ProjektCona1.Controllers
                        orderby groups.Key
                        select groups.OrderByDescending(p => p.Id).FirstOrDefault();
             return View(data);
+        }
+
+        public ActionResult _indexPostaje()
+        {
+            var data = from element in db1.Podatkis
+                       group element by element.IdPostaje
+                       into groups
+                       orderby groups.Key
+                       select groups.OrderByDescending(p => p.Id).FirstOrDefault();
+            return View("_postaje",data);
         }
 
         public ActionResult Indexeng()

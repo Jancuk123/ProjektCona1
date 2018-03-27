@@ -95,6 +95,13 @@ textarea {
         box-shadow: 0 0 5px 5px rgba(255,255,255,0.5);
     }
 
+#map {
+    width: 100%;
+    height: 490px;
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
 #alogo {
     color:transparent;
     outline:0;
@@ -103,6 +110,31 @@ textarea {
 
 .levo {
     padding-left: 0;
+}
+
+.povezava {
+    position: relative;
+}
+
+    .povezava > a {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        text-decoration: none; /* No underlines on the link */
+        z-index: 10; /* Places the link above everything else in the div */
+        background-color: #FFF; /* Fix to make div clickable in IE */
+        opacity: 0; /* Fix to make div clickable in IE */
+        filter: alpha(opacity=1); /* Fix to make div clickable in IE */
+    }
+
+.povecaj:hover {
+    transform: scale(1.2, 1.2);
+    -moz-transform: scale(1.2, 1.2);
+    -ms-transform: scale(1.2, 1.2);
+    -webkit-transform: scale(1.2, 1.2);
+    -o-transform: scale(1.2, 1.2);
 }
 
 .btnmoj {
@@ -183,7 +215,15 @@ textarea {
    
 }
 
+@media (min-width: 992px){
 
+    .row-eq-height {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
 @media (max-width: 768px) {
 
     body {
@@ -247,10 +287,11 @@ textarea {
     /*#region ARSO */
 
 #oblacnost {
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
     background-size: cover;
     position: relative;
+    margin-top:10px;
     margin-bottom: 10px;
 }
 
@@ -387,3 +428,52 @@ textarea {
 /*#endregion */
 
     /*#endregion*/
+
+/*#region Alarm */
+
+.alarm {
+    position:relative;
+    border: 1px solid black;
+    height: 70px;
+    width: 150px;
+}
+
+    .alarm:hover {
+        filter: brightness(111%);
+    }
+
+#stopnjatext {
+      position:center;
+      vertical-align:central;
+      line-height:70px;
+}
+
+.prvastopnja {
+    background-color:green;
+}
+
+.prvastopnja #stopnjatext {
+    color:white;
+}
+
+.drugastopnja {
+    background-color: yellow;
+}
+
+.tretjastopnja {
+    background-color: orange;
+}
+
+.cetrtastopnja {
+    background-color: red;
+}
+
+.cetrtastopnja #stopnjatext {
+    color: white;
+}
+
+.nistopnje {
+    background-color: white;
+}
+
+/*#endregion */
