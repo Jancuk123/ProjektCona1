@@ -226,6 +226,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\pc1Context-20180125125539.mdf" />
+    <Content Include="App_Data\pc1Context-20180125125539_log.ldf">
+      <DependentUpon>pc1Context-20180125125539.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -316,9 +320,7 @@
     <Content Include="Views\Podatki\_podatki.cshtml" />
     <Content Include="Views\Home\_postaje.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

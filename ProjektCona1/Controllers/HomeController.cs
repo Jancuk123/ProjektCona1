@@ -54,15 +54,7 @@ namespace ProjektCona1.Controllers
                 ViewData["vlaga"] = podatki.Vlaga;
                 ViewData["moc"] = podatki.MocV;
                 ViewData["hitrost"] = podatki.HitrostV;
-
-                if (podatki.Padavine24h == "")
-                {
-                    podatki.Padavine24h = "" + 0;
-                    ViewData["padavine"] = podatki.Padavine24h;
-                }
-                else
-                    ViewData["padavine"] = podatki.Padavine24h;
-
+            
                 if (podatki.Oblacnost == "")
                     ViewData["oblacnost"] = "unknown";
                 else
@@ -85,7 +77,6 @@ namespace ProjektCona1.Controllers
                 ViewData["vlaga"] = "?";
                 ViewData["moc"] = "?";
                 ViewData["hitrost"] = "?";
-                ViewData["padavine"] = "?";
                 ViewData["oblacnost"] = "";
                 ViewData["pojavi"] = "";
             }

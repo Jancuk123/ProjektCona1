@@ -13,11 +13,11 @@
 
     <h2 id="podatki">Podatki</h2>
 
-    <div class="chart-container" style="border:2px solid black;border-radius:4px;background-color:rgba(255, 255, 255, 0.60);position:relative;width:100%;height:400px;min-width:300px;margin-top:20px;">
-        <canvas id="bar-chart"></canvas>
+    <div>
+        @Html.PagedListPager((IPagedList)ViewBag.OnePageOfData, page => Url.Action("Index", new { page }))
     </div>
 
-    <table class="table table-hover" style="background-color:rgba(255, 255, 255, 0.60);border:2px solid black;border-radius:4px;margin-top:20px;">
+    <table class="table table-hover" style="background-color:rgba(255, 255, 255, 0.60);border:2px solid black;border-radius:4px;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.IdPostaje)
@@ -58,133 +58,5 @@
         }
 
     </table>
-    <div class="text-center">
-        @Html.PagedListPager((IPagedList)ViewBag.OnePageOfData, page => Url.Action("Index", new { page }))
-    </div>
+
 </div>
-
-<script>
-    @*var podatki = @Html.Raw(Json.Encode(Model));*@
-    var podatkit = @Html.Raw(Json.Encode(ViewData["TempAvg"]));
-    var podatkiv = @Html.Raw(Json.Encode(ViewData["VlagaAvg"]));
-
-    var temp = podatkit.map(function (item) {
-        return item.PovpTemp
-    });
-    var datumi = podatkit.map(function (item) {
-        var x = item.Cas.toString();
-        var konc = x.substr(6, 13);
-        var date = new Date(parseInt(konc));
-        var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }
-        var dateString = date.toLocaleString('de-DE', options);
-        return dateString;
-    });
-
-    var vlage = podatkiv.map(function (item) {
-        return item.PovpVlg;
-    });
-
-    //var postaje = podatki.map(function (item) {
-    //    return item.IdPostaje;
-    //});
-
-    new Chart(document.getElementById("bar-chart"), {
-        type: 'bar',
-        data: {
-            labels:  datumi,
-            datasets: [
-            {
-                type: 'line',
-                label: "Temperatura",
-                backgroundColor: '#98C222',
-                borderColor: '#98C222',
-                borderWidth: 2,
-                data: temp,
-                fill: false,
-                yAxisID: 'yaxis2',
-                cubicInterpolationMode: 'monotone'
-            },
-                {
-                    type: 'bar',
-                    label: "Vlaga",
-                    borderColor: '#162157',
-                    backgroundColor: "#243F8C",
-                    hoverBackgroundColor: "#2c4ec1",
-                    hoverBorderColor: "#243F8C",
-                    borderWidth: 2,
-                    data: vlage,
-                    yAxisID: 'yaxis1'
-                }
-
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                xAxes: [{
-                    barPercentage: 0.9,
-                    categoryPercentage: 1,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Datum',
-                        fontSize: 11
-                    },
-                }],
-                yAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Vlaga',
-                        fontSize: 11
-                    },
-                    barPercentage: 0.9,
-                    categoryPercentage: 1,
-                    type: 'linear',
-                    id: 'yaxis1',
-                    display: true,
-                    position: 'left',
-                    ticks: {
-                        max: 100,
-                        beginAtZero: true,
-                        callback: function (value, index, values) {
-                            return value + '%';
-                        }
-                    },
-                },
-                    {
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Temperatura',
-                            fontSize: 11
-                        },
-                        type: 'linear',
-                        id: 'yaxis2',
-                        display: true,
-                        position: 'right',
-                        ticks: {
-                            max: 50,
-                            beginAtZero: true,
-                            callback: function (value, index, values) {
-                                return value + '°C';
-                            }
-                        },
-                        gridLines: {
-                            drawOnChartArea: false,
-                        }
-                    }]
-            },
-            legend: { display: true },
-            tooltips: {
-                mode: 'index',
-                intersect: false
-            },
-            title: {
-                display: true,
-                text: 'Vlaga in Temperatura po postajah',
-                fontSize: 16
-            }
-        }
-    });
-</script>

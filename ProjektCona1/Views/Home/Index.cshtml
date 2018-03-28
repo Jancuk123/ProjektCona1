@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-3" style="padding-top:20px;">
 
-            <div class="thumbnail" style="height:100%;">
+            <div id="vremeCont" class="thumbnail" style="height:100%;">
                 <div id="oblacnost" class="povezava povecaj center-block @ViewData["delDan"]@ViewData["oblacnost"]">
                     <a target="_blank" href="http://vreme.arso.gov.si/napoved/Nova%20Gorica/graf/0"></a>
                     <div id="pojavi" class="@ViewData["pojavi"]"></div>
@@ -19,7 +19,6 @@
                 <p style="color:forestgreen;"><b>@ViewData["datum"]</b></p>
                 <p style="color:red;"><b>Temperatura: @ViewData["temp"]°C</b></p>
                 <p style="color:dodgerblue;"><b>Vlaga: @ViewData["vlaga"]%</b></p>
-                <p style="color:darkblue;"><b>Padavine zadnjih 24 ur: @ViewData["padavine"]mm</b></p>
                 <p style="color:slategrey"><b>Veter: @ViewData["hitrost"]km/h @ViewData["smer"]</b></p>
                 <br />
                 <p><b>Opozorilo za dež:</b></p>
@@ -37,27 +36,34 @@
 </div>
 
 
+
 <script>
-    $(document).ready(stopnjaText);
-    function stopnjaText() {
-        var text;
-        switch ( @ViewData["stopnja"]) {
+
+    $(function () {
+        var stopnjaClass = "@ViewData["stopnja"]";
+        switch (stopnjaClass) {
             case "prvastopnja":
-                text = "!";
+                $('#stopnjatext').text("Brez posebnosti.")
                 break;
-           
+            case "drugastopnja":
+                $('#stopnjatext').text("Bodite pozorni!")
+                break;
+            case "tretjastopnja":
+                $('#stopnjatext').text("Bodite pripravljeni!")
+                break;
+            case "cetrtastopnja":
+                $('#stopnjatext').text("Ukrepajte!")
+                break;
+            default:
+                $('#stopnjatext').text("Ni podatka.")
         }
-        document.getElementById("stopnjatext").innerHTML = text;
-    };
-</script>
+    });
+   
 
-<script>
-$(function () {
+
+    $(function () {
         setInterval(function () { $('#live').load('/Home/_indexPostaje') }, 10000);
-        });
-</script>
-
-<script>
+    });
 
     $(document).ready(majhen);
     $(window).on('resize', majhen);

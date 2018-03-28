@@ -49,9 +49,6 @@ namespace ProjektCona1
                                     case "wwsyn_icon":
                                         podatek.Pojavi = reader.ReadElementContentAsString();
                                         break;
-                                    case "rr24h_val":
-                                        podatek.Padavine24h = reader.ReadElementContentAsString();
-                                        break;
                                     case "dd_icon":
                                         podatek.SmerV = reader.ReadElementContentAsString();
                                         break;
