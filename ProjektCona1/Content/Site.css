@@ -138,6 +138,14 @@ textarea {
     -o-transform: scale(1.1, 1.1);
 }
 
+.slikca:hover {
+    transform: scale(1.1, 1.1);
+    -moz-transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
+    -o-transform: scale(1.1, 1.1);
+}
+
 .btnmoj {
     color: white;
     background-color: #1B3C8B;
@@ -311,7 +319,7 @@ textarea {
 
 .alarm {
     position:relative;
-    border: 1px solid black;
+    border: 2px solid black;
     height: 70px;
     max-width:150px;
     width: 80%;

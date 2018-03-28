@@ -291,6 +291,7 @@
     <Content Include="Slike\partlycloundynight.png" />
     <Content Include="Slike\partlysunny.png" />
     <Content Include="Slike\rain03.png" />
+    <Content Include="Slike\ozadje.png" />
     <Content Include="Slike\scng1.png" />
     <Content Include="Slike\sloveniaicon.png" />
     <Content Include="Slike\snow.png" />
