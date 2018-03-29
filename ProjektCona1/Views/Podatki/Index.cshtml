@@ -11,13 +11,25 @@
 
 <div class="container">
 
+    <div class="alert alert-info" style="margin-top:10px;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Info!</strong> <br />
+        Aplikacija je še v razvoju, podatki "postaj" so fiktivni in služijo za testiranje. Ita/Ang verziji še nista izdelani. To ni zaključena verzija spletne strani.<br />
+        Prikazan je tudi primer grafa za prikazovanje vodostaja na vodnem viru.
+    </div>
+
     <h2 id="podatki">Podatki</h2>
+
+    <div id="chart-dan" class="chartkontR" style="margin-bottom:10px;">
+        <canvas id="radar"></canvas>
+    </div>
+
 
     <div>
         @Html.PagedListPager((IPagedList)ViewBag.OnePageOfData, page => Url.Action("Index", new { page }))
     </div>
 
-    <table class="table table-hover" style="background-color:rgba(255, 255, 255, 0.60);border:2px solid black;border-radius:4px;">
+    <table class="table table-hover kontdef">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.IdPostaje)
@@ -60,3 +72,48 @@
     </table>
 
 </div>
+
+<script>
+    var config = {
+        type: 'radar',
+        data: {
+            labels: ['Postaja1', 'Postaja2', 'Postaja3', 'Postaja4', 'Postaja5', 'Postaja6', 'Postaja7', 'Postaja8', 'Postaja9', 'Postaja10', 'Postaja11', 'Postaja12',],
+            datasets: [{
+                data: [13, 8, 10, 8, 7, 6, 1, 0, -3, -5, -11, -3],
+                backgroundColor: 'rgba(27, 60, 139, 0.3)',
+                pointBackgroundColor: '#1B3C8B',
+                borderColor: '#1B3C8B',
+                borderWidth: 2,
+                label: "Razilka v vodostaju"
+            }]
+        },
+        options:
+        {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Primer grafa za prikazovanje razlike v vodostaju - TEST'
+            },
+            scale: {
+                gridLines: {
+                    color: ['rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.3)', 'rgba(0, 0, 0, 0.1)'],
+                    
+                },
+                ticks: {
+                    min: -20,
+                    max: 40,
+                    beginAtZero: false
+                }
+            }
+        }
+    };
+    
+    new Chart(document.getElementById('radar'), config);
+  
+    
+
+</script>

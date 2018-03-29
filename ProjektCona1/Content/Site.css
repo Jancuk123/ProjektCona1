@@ -52,6 +52,35 @@ textarea {
         font-size: 16px;
     }
 
+.chartkontP {
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    width: 100%;
+    height: 400px;
+    min-width: 300px;
+    margin-top: 20px;
+}
+
+.chartkontR {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid black;
+    border-radius: 4px;
+    position: relative;
+    width: 100%;
+    height: 400px;
+    min-width: 300px;
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.kontdef {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
 .main {
     height: 100%;
     display: flex;
@@ -148,7 +177,7 @@ textarea {
 
 .btnmoj {
     color: white;
-    background-color: #1B3C8B;
+    background-color: rgba(27, 60, 139, 1);
     border:0;
 }
 
