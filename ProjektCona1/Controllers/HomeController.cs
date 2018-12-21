@@ -15,38 +15,80 @@ namespace ProjektCona1.Controllers
             Vreme podatki = BralnikXML.Branje();
             string stopnja = BralnikXML.Alarm();
             //16.01.2018 15:30 CEST
-            //012345678901234567890   !!!
+            //16.01.2018 1:30 CEST
+            //0123456789012345678901   !!!
+            //16.01.2018 19:30 CET
             //16.01.2018 9:30 CET
             if (podatki != null)
             {
                 string zadnjiDatum = podatki.Datum;
-                if (zadnjiDatum.Length == 21)
+                if (podatki.Datum.Contains("CEST"))
                 {
-                    int dan = int.Parse(zadnjiDatum.Substring(0, 2));
-                    int mesec = int.Parse(zadnjiDatum.Substring(3, 2));
-                    int leto = int.Parse(zadnjiDatum.Substring(6, 4));
-                    int ura = int.Parse(zadnjiDatum.Substring(11, 2));
-                    int minuta = int.Parse(zadnjiDatum.Substring(14, 2));
-                    DateTime datum = new DateTime(leto, mesec, dan, ura, minuta, 0);
-                    ViewData["datum"] = datum;
-                    if (datum.Hour > 20 | datum.Hour < 5)
-                        ViewData["delDan"] = "night";
+                    //16.01.2018 15:30 CEST
+                    //16.01.2018 1:30 CEST
+                    //0123456789012345678901   !!!
+                    if (zadnjiDatum.Length == 21)
+                    {
+                        int dan = int.Parse(zadnjiDatum.Substring(0, 2));
+                        int mesec = int.Parse(zadnjiDatum.Substring(3, 2));
+                        int leto = int.Parse(zadnjiDatum.Substring(6, 4));
+                        int ura = int.Parse(zadnjiDatum.Substring(11, 2));
+                        int minuta = int.Parse(zadnjiDatum.Substring(14, 2));
+                        DateTime datum = new DateTime(leto, mesec, dan, ura, minuta, 0);
+                        ViewData["datum"] = datum;
+                        if (datum.Hour > 20 | datum.Hour < 5)
+                            ViewData["delDan"] = "night";
+                        else
+                            ViewData["deldan"] = "day";
+                    }
                     else
-                        ViewData["deldan"] = "day";
+                    {
+                        int dan = int.Parse(zadnjiDatum.Substring(0, 2));
+                        int mesec = int.Parse(zadnjiDatum.Substring(3, 2));
+                        int leto = int.Parse(zadnjiDatum.Substring(6, 4));
+                        int ura = int.Parse(zadnjiDatum.Substring(11, 1));
+                        int minuta = int.Parse(zadnjiDatum.Substring(13, 2));
+                        DateTime datum = new DateTime(leto, mesec, dan, ura, minuta, 0);
+                        ViewData["datum"] = datum;
+                        if (datum.Hour > 20 | datum.Hour < 5)
+                            ViewData["delDan"] = "night";
+                        else
+                            ViewData["deldan"] = "day";
+                    }
                 }
                 else
                 {
-                    int dan = int.Parse(zadnjiDatum.Substring(0, 2));
-                    int mesec = int.Parse(zadnjiDatum.Substring(3, 2));
-                    int leto = int.Parse(zadnjiDatum.Substring(6, 4));
-                    int ura = int.Parse(zadnjiDatum.Substring(11, 1));
-                    int minuta = int.Parse(zadnjiDatum.Substring(13, 2));
-                    DateTime datum = new DateTime(leto, mesec, dan, ura, minuta, 0);
-                    ViewData["datum"] = datum;
-                    if (datum.Hour > 20 | datum.Hour < 5)
-                        ViewData["delDan"] = "night";
+                    //0123456789012345678901   !!!
+                    //16.01.2018 19:30 CET
+                    //16.01.2018 9:30 CET
+                    if (zadnjiDatum.Length == 20)
+                    {
+                        int dan = int.Parse(zadnjiDatum.Substring(0, 2));
+                        int mesec = int.Parse(zadnjiDatum.Substring(3, 2));
+                        int leto = int.Parse(zadnjiDatum.Substring(6, 4));
+                        int ura = int.Parse(zadnjiDatum.Substring(11, 2));
+                        int minuta = int.Parse(zadnjiDatum.Substring(14, 2));
+                        DateTime datum = new DateTime(leto, mesec, dan, ura, minuta, 0);
+                        ViewData["datum"] = datum;
+                        if (datum.Hour > 20 | datum.Hour < 5)
+                            ViewData["delDan"] = "night";
+                        else
+                            ViewData["deldan"] = "day";
+                    }
                     else
-                        ViewData["deldan"] = "day";
+                    {
+                        int dan = int.Parse(zadnjiDatum.Substring(0, 2));
+                        int mesec = int.Parse(zadnjiDatum.Substring(3, 2));
+                        int leto = int.Parse(zadnjiDatum.Substring(6, 4));
+                        int ura = int.Parse(zadnjiDatum.Substring(11, 1));
+                        int minuta = int.Parse(zadnjiDatum.Substring(13, 2));
+                        DateTime datum = new DateTime(leto, mesec, dan, ura, minuta, 0);
+                        ViewData["datum"] = datum;
+                        if (datum.Hour > 20 | datum.Hour < 5)
+                            ViewData["delDan"] = "night";
+                        else
+                            ViewData["deldan"] = "day";
+                    }
                 }
 
                 ViewData["temp"] = podatki.Temperatura;

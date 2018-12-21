@@ -87,8 +87,8 @@
     function myMap() {
         var mapCanvas = document.getElementById("map");
         var mapOptions = {
-            center: new google.maps.LatLng(45.952766, 13.650980),
-            zoom: 13,
+            center: new google.maps.LatLng(45.940158, 13.548111),
+            zoom: 11.5,
             panControl: false,
             zoomControl: false,
             mapTypeControl: true,
@@ -102,28 +102,90 @@
         var map = new google.maps.Map(mapCanvas, mapOptions);
 
         var marker1 = new google.maps.Marker({
-            position: new google.maps.LatLng(45.952720, 13.668899),
+            position: new google.maps.LatLng(45.941944, 13.615278),
             label: "1"
 
         });
         var marker2 = new google.maps.Marker({
-            position: new google.maps.LatLng(45.949988, 13.650484),
+            position: new google.maps.LatLng(45.915278, 13.586944),
             label: "2"
 
         });
         var marker3 = new google.maps.Marker({
-            position: new google.maps.LatLng(45.953065, 13.636372),
+            position: new google.maps.LatLng(45.949167, 13.605556),
             label: "3"
 
         });
+        var marker4 = new google.maps.Marker({
+            position: new google.maps.LatLng(45.903889, 13.531111),
+            label: "4"
 
+        });
+        var marker5 = new google.maps.Marker({
+            position: new google.maps.LatLng(45.8775, 13.466667),
+            label: "5"
+
+        });
+        var marker6 = new google.maps.Marker({
+            position: new google.maps.LatLng(45.922222, 13.435833),
+            label: "6"
+
+        });
+        var marker7 = new google.maps.Marker({
+            position: new google.maps.LatLng(46.00217291, 13.66779388),
+            label: "7"
+
+        });
+        var marker8 = new google.maps.Marker({
+            position: new google.maps.LatLng(45.95266875, 13.66272403),
+            label: "8"
+
+        });
+        var marker9 = new google.maps.Marker({
+            position: new google.maps.LatLng(45.9488001, 13.64172182),
+            label: "9"
+
+        });
+        var marker10 = new google.maps.Marker({
+            position: new google.maps.LatLng(45.93647792, 13.64260437),
+            label: "10"
+
+        });
+        var marker11 = new google.maps.Marker({
+            position: new google.maps.LatLng(45.91839227, 13.64838943),
+            label: "11"
+
+        });
+        var marker12 = new google.maps.Marker({
+            position: new google.maps.LatLng(45.89895467, 13.62651911),
+            label: "12"
+
+        });
         marker1.setMap(map);
         marker2.setMap(map);
         marker3.setMap(map);
+        marker4.setMap(map);
+        marker5.setMap(map);
+        marker6.setMap(map);
+        marker7.setMap(map);
+        marker8.setMap(map);
+        marker9.setMap(map);
+        marker10.setMap(map);
+        marker11.setMap(map);
+        marker12.setMap(map);
 
         marker1.addListener('click', function () { location.href = "/Podatki/Postaja/1"; });
         marker2.addListener('click', function () { location.href = "/Podatki/Postaja/2"; });
         marker3.addListener('click', function () { location.href = "/Podatki/Postaja/3"; });
+        marker4.addListener('click', function () { location.href = "/Podatki/Postaja/4"; });
+        marker5.addListener('click', function () { location.href = "/Podatki/Postaja/5"; });
+        marker6.addListener('click', function () { location.href = "/Podatki/Postaja/6"; }); marker1.addListener('click', function () { location.href = "/Podatki/Postaja/1"; });
+        marker7.addListener('click', function () { location.href = "/Podatki/Postaja/7"; });
+        marker8.addListener('click', function () { location.href = "/Podatki/Postaja/8"; }); marker1.addListener('click', function () { location.href = "/Podatki/Postaja/1"; });
+        marker9.addListener('click', function () { location.href = "/Podatki/Postaja/9"; });
+        marker10.addListener('click', function () { location.href = "/Podatki/Postaja/10"; });
+        marker11.addListener('click', function () { location.href = "/Podatki/Postaja/11"; });
+        marker12.addListener('click', function () { location.href = "/Podatki/Postaja/12"; });
 
     }
 
